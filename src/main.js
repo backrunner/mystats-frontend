@@ -9,6 +9,14 @@ Vue.prototype.$moment = moment
 
 Vue.config.productionTip = false
 
+// 修改页面 title
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+})
+
 new Vue({
   router,
   render: h => h(App)

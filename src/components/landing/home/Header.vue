@@ -32,11 +32,11 @@ span{
 .title{
     padding: 1.5rem;
     font-size: 2rem;
-    letter-spacing: 0.075rem;
+    letter-spacing: 0.1rem;
 }
 .desc{
     font-size: 1.375rem;
-    letter-spacing: 0.05rem;
+    letter-spacing: 0.075rem;
 }
 @media (max-width: 768px) {
     #logo{
