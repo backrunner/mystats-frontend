@@ -13,14 +13,12 @@ const routes = [{
         }
     },
     {
-        path: '/login',
-        name: 'landing.login',
-        component: () => import( /* webpackChunkName: "landing.login" */ '../views/landing/Login.vue')
-    },
-    {
-        path: '/register',
-        name: 'landing.register',
-        component: () => import( /* webpackChunkName: "landing.register" */ '../views/landing/Register.vue')
+        path: '/portal',
+        name: 'landing.portal',
+        component: () => import( /* webpackChunkName: "landing.portal" */ '../views/landing/Portal.vue'),
+        meta: {
+            title: '登录 - myStatics'
+        }
     }
 ]
 

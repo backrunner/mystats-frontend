@@ -4,11 +4,11 @@
             <el-col :span="24">
                 <span v-if="endYear == null">
                     Copyright &copy; {{startYear}} <a class="orgLink" :href="orgLink">{{org}}</a><span class="author-split">|</span>
-                    <tremplate v-if="author != null">Developed by {{author}}</tremplate>
+                    <template v-if="author != null">Developed by {{author}}</template>
                 </span>
                 <span v-else>
                     Copyright &copy; {{startYear}} - {{endYear}} <a :href="orgLink">{{org}}</a><span class="author-split">|</span>
-                    <tremplate v-if="author != null">Developed by {{author}}</tremplate>
+                    <template v-if="author != null">Developed by {{author}}</template>
                 </span>
             </el-col>
         </el-row>
@@ -31,9 +31,6 @@ export default {
 </script>
 
 <style lang="less" scope>
-.footer{
-    margin-top: 5rem;
-}
 .orgLink{
     color: #909399;
     transition: 100ms;

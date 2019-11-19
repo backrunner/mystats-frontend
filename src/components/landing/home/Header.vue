@@ -18,9 +18,18 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'landing.home.header'
+}
+</script>
+
 <style lang="less" scoped>
 span{
-    color: #303133;
+    color: #606266;
+    font-weight: 500;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 .row-logo {
     text-align: center;
@@ -28,11 +37,14 @@ span{
 }
 #logo{
     width: 10rem;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 .title{
     padding: 1.5rem;
     font-size: 2rem;
     letter-spacing: 0.1rem;
+    color: #303133 !important;
 }
 .desc{
     font-size: 1.375rem;

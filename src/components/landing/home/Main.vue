@@ -3,7 +3,7 @@
         <div class="control-wrapper">
             <el-row class="row-start">
                 <el-col :span="24">
-                    <el-button type="primary" id="btn-start" round>开始使用</el-button>
+                    <el-button type="primary" id="btn-start" round @click="goLogin()">开始使用</el-button>
                 </el-col>
             </el-row>
         </div>
@@ -19,7 +19,7 @@
                         </div>
                         <div class="card-desc">
                             <p>
-                                前端由<han />Vue.js<han />强力驱动
+                                前端由<Han />Vue.js<Han />强力驱动
                             </p>
                             <p>给你带来畅快的使用体验</p>
                         </div>
@@ -58,19 +58,34 @@
     </div>
 </template>
 
+<script>
+import Han from '@/components/basic/Han.vue'
+
+export default {
+    name: 'landing.home.main',
+    methods: {
+        goLogin() {
+            this.$router.push({
+                name: 'landing.portal'
+            })
+        }
+    },
+    components: {
+        Han
+    }
+}
+</script>
+
 <style lang="less" scoped>
 span, p {
-    color: #303133;
+    color: #606266;
+    font-weight: 500;
     user-select: none;
     -webkit-user-drag: none;
 }
 img, i{
     user-select: none;
     -webkit-user-drag: none;
-}
-han {
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
 }
 .cards-wrapper {
     width: 100%;
@@ -87,6 +102,7 @@ han {
 }
 .el-card {
     margin: 0 1.25rem;
+    height: 300px;
 }
 .el-card:hover {
     background-color: #fcfcfc;
@@ -94,6 +110,7 @@ han {
 .card-logo {
     text-align: center;
     padding: 1rem;
+    height: 68px;
 }
 .card-logo > i{
     font-size: 3.75rem;

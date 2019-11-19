@@ -25,8 +25,17 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
+html, body, .el-container{
+    height: 100%;
+}
+body{
+    margin: 0;
+}
 .el-main{
     overflow-x: hidden;
+}
+.el-footer{
+    height: 80px !important;
 }
 </style>
