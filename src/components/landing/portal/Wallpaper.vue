@@ -60,7 +60,7 @@ export default {
     width: 100%;
     height: 100%;
     z-index: 98;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 55%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 1) 100%);
 }
 .wallpaper-overlay > span{
     position: absolute;
