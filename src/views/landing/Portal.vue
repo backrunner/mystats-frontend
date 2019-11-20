@@ -1,11 +1,11 @@
 <template>
     <el-container>
-        <el-aside width="360px" class="side-panel">
+        <el-aside width="480px" class="side-panel">
             <SidePanel></SidePanel>
         </el-aside>
         <el-container>
             <el-main class="main">
-
+                <Wallpaper></Wallpaper>
             </el-main>
         </el-container>
     </el-container>
@@ -13,11 +13,13 @@
 
 <script>
 import SidePanel from '@/components/landing/portal/SidePanel.vue'
+import Wallpaper from '@/components/landing/portal/Wallpaper.vue'
 
 export default {
     name: 'landing.portal',
     components: {
-        SidePanel
+        SidePanel,
+        Wallpaper
     }
 }
 </script>
@@ -30,11 +32,13 @@ body{
     margin: 0;
 }
 .side-panel{
-    padding: 2.5rem;
-    box-shadow: 0 2px 1.75rem 0 rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    box-shadow: 0 0 2rem 0 #6e6e6e;
     overflow: hidden;
+    z-index: 99;
 }
 .main{
     padding: 0;
+    z-index: 0;
 }
 </style>

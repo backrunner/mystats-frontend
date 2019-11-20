@@ -2,8 +2,11 @@
     <div class="panel-aside">
         <el-row class="row-title">
             <el-col :span="24">
+                <div class="portal-title-logo">
+                    <img src="@/assets/logo_256.png">
+                </div>
                 <template v-if="status == 'login'">
-                    <span class="portal-title">登录</span>
+                    <span class="portal-title">欢迎使用<Han/>myStatics</span>
                 </template>
                 <template v-else-if="status == 'register'">
                     <span class="portal-title">注册</span>
@@ -64,6 +67,8 @@
 </template>
 
 <script>
+import Han from '@/components/basic/Han.vue'
+
 export default {
     data() {
         return {
@@ -99,7 +104,10 @@ export default {
             })
         }
     },
-    name: "landing.portal.sidePanel"
+    name: "landing.portal.sidePanel",
+    components: {
+        Han
+    }
 };
 </script>
 
@@ -107,15 +115,25 @@ export default {
 span, a{
     color: #606266;
     font-weight: 500;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.portal-title-logo{
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.portal-title-logo > img{
+    width: 5rem;
+    margin-left: -4px;
+    margin-bottom: 2rem;
 }
 .row-title{
-    padding-top: 18vh;
-    text-align: center;
+    padding-top: 12vh;
     margin-bottom: 22px;
 }
 .portal-title{
     font-size: 1.5rem;
-    letter-spacing: 0.25rem;
+    letter-spacing: 0.05rem;
 }
 .forget-password{
     float: right;
