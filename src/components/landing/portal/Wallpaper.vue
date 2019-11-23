@@ -37,7 +37,7 @@ export default {
         },
         setWallpaperPic() {
             this.$set(this, "wallpaperStyle", {
-                backgroundImage: "url(https://source.unsplash.com/random/" + this.getPicSize() + ")"
+                backgroundImage: "url(https://source.unsplash.com/" + this.getPicSize() + "?nature,water)"
             });
         }
     },

@@ -3,7 +3,36 @@ import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
+import qs from "qs"
 import './plugins/element.js'
+
+// 配置axios
+axios.defaults.baseURL = ''
+axios.defaults.withCredentials = true
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.transformRequest = [function (data) {
+    return qs.stringify(data, {
+        arrayFormat: 'brackets'
+    })
+}]
+
+axios.interceptors.response.use(
+    function (response) {
+      return response
+    },
+    function (error) {
+        if (error.response) {
+            if (error.response.status == 401) {
+                router.replace({
+                    href: '/portal',
+                    query: {redirect: router.currentRoute.fullPath}
+                })
+            }
+            return Promise.reject(error.response.data)  // 返回接口返回的错误信息
+        }
+    }
+);
 
 // set up axios
 Vue.use(VueAxios, axios)

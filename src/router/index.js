@@ -19,6 +19,14 @@ const routes = [{
         meta: {
             title: '登录 - myStatics'
         }
+    },
+    {
+        path: '/app',
+        name: 'app.main',
+        component: () => import( /* webpackChunkName: "app.main" */ '../views/app/Main.vue'),
+        meta: {
+            title: 'myStatics'
+        }
     }
 ]
 
