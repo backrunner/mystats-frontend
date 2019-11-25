@@ -19,7 +19,7 @@
                         </div>
                         <div class="card-desc">
                             <p>
-                                前端由<Han />Vue.js<Han />强力驱动
+                                站点由<Han />Vue.js<Han />强力驱动
                             </p>
                             <p>给你带来畅快的使用体验</p>
                         </div>
@@ -103,9 +103,7 @@ img, i{
 .el-card {
     margin: 0 1.25rem;
     height: 300px;
-}
-.el-card:hover {
-    background-color: #fcfcfc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03) !important;
 }
 .card-logo {
     text-align: center;

@@ -1,7 +1,9 @@
 import Vue from 'vue'
+import VueBus from 'vue-bus'
 import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueLazyload from 'vue-lazyload'
 import router from './router'
 import qs from "qs"
 import './plugins/element.js'
@@ -36,6 +38,12 @@ axios.interceptors.response.use(
 
 // set up axios
 Vue.use(VueAxios, axios)
+
+// set up lazyload
+Vue.use(VueLazyload)
+
+// set up vue bus
+Vue.use(VueBus)
 
 // import moment
 import moment from "moment"

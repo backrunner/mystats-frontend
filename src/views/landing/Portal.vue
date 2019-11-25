@@ -51,7 +51,7 @@ body {
 }
 .side-panel {
     padding: 2.25rem;
-    box-shadow: 0 0 2rem 0 #6e6e6e;
+    box-shadow: 0 0 1.5rem 0 #6e6e6e;
     overflow: hidden;
     z-index: 99;
 }

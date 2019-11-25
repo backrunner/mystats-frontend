@@ -1,5 +1,8 @@
 <template>
-    <div class="wallpaper" :style="wallpaperStyle">
+    <div class="wallpaper" v-lazy:background-image="wallpaper">
+        <div class="wallpaper-loading">
+            <img src="https://img.backrunner.top/mystatics/loading.gif">
+        </div>
         <div class="wallpaper-overlay">
             <span>图片来自<Han/>Unsplash</span>
         </div>
@@ -13,11 +16,10 @@ export default {
     name: "landing.portal.Wallpaper",
     data() {
         return {
-            wallpaperStyle: ""
+            wallpaper: {
+                src: "https://source.unsplash.com/random/" + this.getPicSize()+'?nature,water'
+            }
         };
-    },
-    mounted() {
-        this.setWallpaperPic()
     },
     methods: {
         getPicSize() {
@@ -34,11 +36,6 @@ export default {
             } else if (width <= 3840) {
                 return "3840x2160"
             }
-        },
-        setWallpaperPic() {
-            this.$set(this, "wallpaperStyle", {
-                backgroundImage: "url(https://source.unsplash.com/" + this.getPicSize() + "?nature,water)"
-            });
         }
     },
     components:{
@@ -55,12 +52,28 @@ export default {
     background-size: cover;
     background-attachment: fixed;
     z-index: 0;
+    animation:fadeIn 250ms;
+}
+.wallpaper-loading{
+    float: left;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.wallpaper-loading > img{
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%)
 }
 .wallpaper-overlay{
     width: 100%;
     height: 100%;
     z-index: 98;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 55%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 1) 100%);
+    display: none;
+    transition: 100ms;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 55%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.75) 100%);
 }
 .wallpaper-overlay > span{
     position: absolute;
@@ -72,5 +85,29 @@ export default {
     letter-spacing: 0.05rem;
     user-select: none;
     -webkit-user-drag: none;
+}
+.wallpaper[lazy=loaded] > .wallpaper-loading{
+    display: none;
+    animation: fadeOut 200ms;
+}
+.wallpaper[lazy=loaded] > .wallpaper-overlay{
+    display: block;
+    animation: fadeIn 250ms;
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    100%{
+        opacity: 0;
+    }
+    0%{
+        opacity: 1;
+    }
 }
 </style>
