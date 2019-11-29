@@ -21,7 +21,7 @@
                         <el-input v-model="loginForm.username" placeholder="用户名"></el-input>
                     </el-form-item>
                     <el-form-item prop="password">
-                        <el-input v-model="loginForm.password" type="password" placeholder="密码"></el-input>
+                        <el-input v-model="loginForm.password" type="password" placeholder="密码" @keyup.enter.native="onLogin"></el-input>
                     </el-form-item>
                     <div class="form-beyond-footer">
                         <el-checkbox v-model="loginForm.rememberMe">记住我</el-checkbox>
@@ -40,7 +40,7 @@
                         <el-input v-model="registerForm.password" type="password" placeholder="密码"></el-input>
                     </el-form-item>
                     <el-form-item prop="confirmPassword">
-                        <el-input v-model="registerForm.confirmPassword" type="password" placeholder="确认密码"></el-input>
+                        <el-input v-model="registerForm.confirmPassword" type="password" placeholder="确认密码" @keyup.enter.native="onRegister"></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onRegister" class="form-footer-btn form-footer-btn-primary" :disabled="captchaStatus">注册</el-button>
@@ -147,7 +147,7 @@
         },
         mounted() {
             if (typeof window.grecatpcha != 'undefined'){
-                this.$set(this, 'captchaStatus', true)
+                this.captchaStatus = true
             }
         },
         methods: {
@@ -168,10 +168,10 @@
                 });
             },
             toLogin() {
-                this.$set(this, 'status', 'login')
+                this.status = 'login'
             },
             toRegister() {
-                this.$set(this, 'status', 'register')
+                this.status = 'register'
             },
             toIndex() {
                 this.$router.push({
@@ -215,7 +215,7 @@
                             return;
                         } else {
                             this.$message.success('注册成功')
-                            this.$set(this, 'status', 'login')
+                            this.status = 'login'
                         }
                     });
                 }

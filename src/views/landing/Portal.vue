@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-aside width="620px" class="side-panel">
+        <el-aside width="540px" class="side-panel">
             <SidePanel></SidePanel>
         </el-aside>
         <el-container>
@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         checkLoginStatus() {
-            this.axios.get("/api/portal/check").then(response => {
+            this.axios.get("/api/portal/check").then((response) => {
                 if (response.status == 200) {
                     if (response.data.code == 200) {
                         this.$router.push({

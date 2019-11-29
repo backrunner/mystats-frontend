@@ -12,8 +12,8 @@ export default {
     },
     methods: {
         foldOrExpand(){
-            this.$set(this, 'folded', !this.folded)
-
+            this.folded = !this.folded
+            this.$bus.emit('menu-status-changed', this.folded)
         }
     }
 };

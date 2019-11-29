@@ -103,7 +103,7 @@ img, i{
 .el-card {
     margin: 0 1.25rem;
     height: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
 }
 .card-logo {
     text-align: center;
@@ -133,6 +133,14 @@ img, i{
     font-size: 1rem;
     text-align: center;
     letter-spacing: 0.025rem;
+}
+@media (max-width: 1600px){
+    .row-start{
+        margin-top: 1.75rem;
+    }
+    .row-cards {
+        padding-top: 2.5rem;
+    }
 }
 @media (max-width: 1024px) {
     .row-cards {

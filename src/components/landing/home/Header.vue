@@ -50,9 +50,21 @@ span{
     font-size: 1.375rem;
     letter-spacing: 0.075rem;
 }
+@media (max-width: 1600px){
+    #logo{
+        width: 8rem;
+    }
+    .title{
+        padding: 1rem;
+        font-size: 1.75rem;
+    }
+    .row-logo {
+        padding-top: 1.25rem;
+    }
+}
 @media (max-width: 768px) {
     #logo{
-        width: 8.5rem;
+        width: 6.5rem;
     }
     .row-logo {
         padding-top: 2.5rem;

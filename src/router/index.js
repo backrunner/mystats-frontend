@@ -26,7 +26,49 @@ const routes = [{
         component: () => import( /* webpackChunkName: "app.main" */ '../views/app/Main.vue'),
         meta: {
             title: 'myStatics'
-        }
+        },
+        children: [
+            {
+                path: 'dashboard',
+                name: 'app.page.dashboard',
+                component: () => import( /* webpackChunkName: "app.page.dashboard" */ '../views/app/pages/Dashboard.vue'),
+                meta: {
+                    title: '仪表盘'
+                }
+            },
+            {
+                path: 'appmanage',
+                name: 'app.page.appManage',
+                component: () => import( /* webpackChunkName: "app.page.appManage" */ '../views/app/pages/AppManage.vue'),
+                meta: {
+                    title: '应用管理'
+                }
+            },
+            {
+                path: 'usersettings',
+                name: 'app.page.userSettings',
+                component: () => import( /* webpackChunkName: "app.page.userSettings" */ '../views/app/pages/UserSettings.vue'),
+                meta: {
+                    title: '用户设置'
+                }
+            },
+            {
+                path: 'report',
+                name: 'app.page.report',
+                component: () => import( /* webpackChunkName: "app.page.report" */ '../views/app/pages/Report.vue'),
+                meta: {
+                    title: '数据报表'
+                }
+            },
+            {
+                path: 'admin',
+                name: 'app.page.admin',
+                component: () => import( /* webpackChunkName: "app.page.admin" */ '../views/app/pages/Admin.vue'),
+                meta: {
+                    title: '系统管理'
+                }
+            }
+        ]
     }
 ]
 

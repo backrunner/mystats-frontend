@@ -4,6 +4,7 @@ import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyload from 'vue-lazyload'
+import store from './store'
 import router from './router'
 import qs from "qs"
 import './plugins/element.js'
@@ -25,10 +26,10 @@ axios.interceptors.response.use(
     },
     function (error) {
         if (error.response) {
+            // 拦截401，发生401就跳回登录
             if (error.response.status == 401) {
-                router.replace({
-                    href: '/portal',
-                    query: {redirect: router.currentRoute.fullPath}
+                router.push({
+                    name: 'landing.portal'
                 })
             }
             return Promise.reject(error.response.data)  // 返回接口返回的错误信息
@@ -64,5 +65,6 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount('#app')

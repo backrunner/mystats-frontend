@@ -3,20 +3,37 @@
         <div class="fold-button">
             <FoldButton></FoldButton>
         </div>
+        <div class="breadcrumb">
+            <Breadcrumb></Breadcrumb>
+        </div>
+        <div class="user-module">
+            <UserAvatar></UserAvatar>
+        </div>
     </div>
 </template>
 
 <script>
 import FoldButton from '@/components/app/basic/FoldButton.vue'
+import Breadcrumb from '@/components/app/basic/Breadcrumb.vue'
+import UserAvatar from '@/components/app/basic/UserAvatar.vue'
+
 export default {
     name: 'app.main.headerBar',
     components: {
-        FoldButton
+        FoldButton,
+        Breadcrumb,
+        UserAvatar
     }
 }
 </script>
 
 <style lang="less">
+.user-module{
+    float: right;
+}
+</style>
+
+<style lang="less" scoped>
 @headerbar-height: 56px;
 .header-bar{
     height: @headerbar-height;
@@ -33,5 +50,10 @@ export default {
 .fold-button:hover{
     cursor: pointer;
     color:#828282;
+}
+.breadcrumb{
+    display: inline-block;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 </style>
