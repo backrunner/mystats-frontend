@@ -38,6 +38,8 @@
                             <el-button
                                 style="float: right; padding: 3px 0px 3px 12px"
                                 type="text"
+                                :disabled="submitEditDisabled"
+                                @click="submitEdit"
                             >保存</el-button>
                             <el-button
                                 style="float: right; padding: 3px 0"
@@ -78,7 +80,7 @@
                             <span>定期修改密码可为你的帐号提供高强度的保护</span>
                         </div>
                         <div class="box-card-action">
-                            <span>
+                            <span @click="popupChangePassword">
                                 立即修改
                                 <i class="el-icon-arrow-right"></i>
                             </span>
@@ -108,7 +110,7 @@
                     <div slot="header" class="card-header clearfix">
                         <span>最近登录记录</span>
                     </div>
-                    <el-table :data="loginLog" style="width: 100%">
+                    <el-table :data="loginLog" style="width: 100%" v-loading="loginLogLoading">
                         <el-table-column prop="createTime" label="时间" width="180"></el-table-column>
                         <el-table-column prop="ip" label="IP地址" width="180"></el-table-column>
                         <el-table-column prop="geo" label="位置"></el-table-column>
@@ -116,6 +118,26 @@
                 </el-card>
             </el-col>
         </el-row>
+        <el-dialog
+            title="修改密码"
+            :visible.sync="changePasswordDialogVisible"
+            width="30%">
+            <el-form ref="changePasswordForm" :model="changePasswordForm" :rules="changePasswordFormRule">
+                <el-form-item prop="oldPassword" label="旧密码">
+                    <el-input type="password" v-model="changePasswordForm.oldPassword"></el-input>
+                </el-form-item>
+                <el-form-item prop="newPassword" label="新密码">
+                    <el-input type="password" v-model="changePasswordForm.newPassword"></el-input>
+                </el-form-item>
+                <el-form-item prop="newConfirmPassword" label="确认密码">
+                    <el-input type="password" v-model="changePasswordForm.confirmPassword"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="changePasswordDialogVisible = false">取消</el-button>
+                <el-button type="primary" @click="submitChangePassword">确定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -130,7 +152,44 @@ export default {
                 phone: "",
                 email: ""
             },
-            loginLog: []
+            changePasswordForm: {
+                oldPassword: "",
+                newPassword: "",
+                newConfirmPassword: ""
+            },
+            changePasswordFormRule: {
+                oldPassword: [{
+                    required: true,
+                    message: '旧密码不能为空',
+                    trigger: 'blur'
+                }, {
+                    min: 6,
+                    message: '密码长度不能低于6位',
+                    trigger: 'blur'
+                }],
+                newPassword: [{
+                    required: true,
+                    message: '新密码不能为空',
+                    trigger: 'blur'
+                }, {
+                    min: 6,
+                    message: '密码长度不能低于6位',
+                    trigger: 'blur'
+                }],
+                newConfirmPassword: [{
+                    required: true,
+                    message: '确认密码不能为空',
+                    trigger: 'blur'
+                }, {
+                    min: 6,
+                    message: '密码长度不能低于6位',
+                    trigger: 'blur'
+                }]
+            },
+            loginLog: [],
+            loginLogLoading: true,
+            submitEditDisabled: false,
+            changePasswordDialogVisible: false
         };
     },
     watch: {
@@ -145,14 +204,15 @@ export default {
         }
     },
     mounted() {
-        this.userInfoForm.username = this.$store.state.userinfo.username
-        this.userInfoForm.email = this.$store.state.userinfo.email
-        this.userInfoForm.phone = this.$store.state.userinfo.phone
+        this.userInfoForm.username = this.$store.state.userinfo.username;
+        this.userInfoForm.email = this.$store.state.userinfo.email;
+        this.userInfoForm.phone = this.$store.state.userinfo.phone;
         // 获取登录日志信息
-        this.axios.get('/api/user/listLoginLog').then((response)=>{
-            if (response.status == 200){
+        this.axios.get("/api/user/listLoginLog").then(response => {
+            if (response.status == 200) {
                 this.loginLog = response.data.data;
             }
+            this.loginLogLoading = false;
         });
     },
     computed: {
@@ -171,10 +231,74 @@ export default {
         doEdit() {
             this.basicInfoStatus = "edit";
         },
+        submitEdit() {
+            this.submitEditDisabled = true;
+            // 三秒后允许再次提交
+            setTimeout(() => {
+                if (this.submitEditDisabled) {
+                    this.submitEditDisabled = false;
+                }
+            }, 3000);
+            this.axios
+                .post("/api/user/changeBaseInfo", {
+                    newEmail: this.userInfoForm.email,
+                    newPhone: this.userInfoForm.phone
+                })
+                .then(response => {
+                    this.submitEditDisabled = false;
+                    if (response.status != 200) {
+                        this.$message.error("保存失败");
+                        return;
+                    }
+                    if (response.data.code == 200) {
+                        this.$message.success("保存成功");
+                        this.basicInfoStatus = "lock";
+                        this.$store.commit("userinfo/setEmail", this.userInfoForm.email);
+                        this.$store.commit("userinfo/setPhone", this.userInfoForm.phone);
+                    } else {
+                        this.$message.error(response.data.message);
+                    }
+                });
+        },
         cancelEdit() {
             this.basicInfoStatus = "lock";
-            this.userInfoForm.email = this.$store.state.userinfo.email;
-            this.userInfoForm.phone = this.$store.state.userinfo.phone;
+            this.userInfoForm.email = this.$store.state.userinfo.userEmail;
+            this.userInfoForm.phone = this.$store.state.userinfo.userPhone;
+        },
+        popupChangePassword() {
+            this.changePasswordDialogVisible = true;
+            this.clearChangePassword()
+        },
+        clearChangePassword() {
+            this.changePasswordForm.oldPassword = '';
+            this.changePasswordForm.newPassword = '';
+            this.changePasswordForm.newConfirmPassword = '';
+        },
+        submitChangePassword(){
+            // 验证表单
+            this.$refs['changePasswordForm'].validate((valid) => {
+                if (!valid) {
+                    return false;
+                }
+                // 提交请求
+                this.axios.post('/api/user/changePassword', {
+                    oldPassword: this.changePasswordForm.oldPassword,
+                    newPassword: this.changePasswordForm.newPassword,
+                    newConfirmPassword: this.changePasswordForm,newConfirmPassword
+                }).then((response) => {
+                    if (response.status != 200){
+                        this.$message.error("修改密码失败")
+                        return
+                    }
+                    if (response.data.code == 200){
+                        this.$message.success("修改密码成功")
+                        this.clearChangePassword();
+                        this.changePasswordDialogVisible = false;
+                    } else {
+                        this.$message.success(response.data.message)
+                    }
+                })
+            })
         }
     }
 };
@@ -288,6 +412,6 @@ export default {
     margin-top: 1rem;
 }
 #card-loginLog > .el-card__body {
-    padding: 4px 20px 20px 20px
+    padding: 4px 20px 20px 20px;
 }
 </style>

@@ -24,8 +24,8 @@ export default {
         // 拉取用户的基本信息
         this.axios.get('/api/user/fetchUserInfo').then((response) => {
             if (response.status == 200){
-                if (typeof response.data.data.username != 'undefined'){
-                    this.$store.commit('userinfo/setUsername', response.data.data.username)
+                if (response.data.data != null){
+                    this.$store.commit('userinfo/setUserInfo', response.data.data)
                 }
             }
         });

@@ -156,7 +156,11 @@
                     if (!valid) {
                         return false;
                     }
-                    this.executeRecaptcha()
+                    try {
+                        this.executeRecaptcha()
+                    } catch {
+                        this.$message.error('验证加载失败')
+                    }
                 });
             },
             onRegister() {
@@ -164,7 +168,11 @@
                     if (!valid) {
                         return false;
                     }
-                    this.executeRecaptcha()
+                    try {
+                        this.executeRecaptcha()
+                    } catch {
+                        this.$message.error('验证加载失败')
+                    }
                 });
             },
             toLogin() {
