@@ -109,9 +109,9 @@
                         <span>最近登录记录</span>
                     </div>
                     <el-table :data="loginLog" style="width: 100%">
-                        <el-table-column prop="time" label="时间" width="180"></el-table-column>
-                        <el-table-column prop="ipaddress" label="IP地址" width="180"></el-table-column>
-                        <el-table-column prop="location" label="位置"></el-table-column>
+                        <el-table-column prop="createTime" label="时间" width="180"></el-table-column>
+                        <el-table-column prop="ip" label="IP地址" width="180"></el-table-column>
+                        <el-table-column prop="geo" label="位置"></el-table-column>
                     </el-table>
                 </el-card>
             </el-col>
@@ -130,7 +130,7 @@ export default {
                 phone: "",
                 email: ""
             },
-            loginLog: {}
+            loginLog: []
         };
     },
     watch: {
@@ -148,6 +148,12 @@ export default {
         this.userInfoForm.username = this.$store.state.userinfo.username
         this.userInfoForm.email = this.$store.state.userinfo.email
         this.userInfoForm.phone = this.$store.state.userinfo.phone
+        // 获取登录日志信息
+        this.axios.get('/api/user/listLoginLog').then((response)=>{
+            if (response.status == 200){
+                this.loginLog = response.data.data;
+            }
+        });
     },
     computed: {
         username() {

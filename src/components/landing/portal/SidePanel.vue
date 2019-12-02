@@ -169,9 +169,16 @@
             },
             toLogin() {
                 this.status = 'login'
+                this.loginForm.password = '';
             },
             toRegister() {
-                this.status = 'register'
+                this.status = 'register',
+                this.clearRegister()
+            },
+            clearRegister(){
+                this.registerForm.username = '';
+                this.registerForm.password = '';
+                this.registerForm.confirmPassword = '';
             },
             toIndex() {
                 this.$router.push({
