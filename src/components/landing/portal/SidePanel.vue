@@ -6,8 +6,7 @@
                     <img src="@/assets/logo_256.png">
                 </div>
                 <template v-if="status == 'login'">
-                    <span class="portal-title">欢迎使用
-                        <Han />myStatics</span>
+                    <span class="portal-title">欢迎使用<Han />myStatics</span>
                 </template>
                 <template v-else-if="status == 'register'">
                     <span class="portal-title">注册</span>

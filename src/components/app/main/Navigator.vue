@@ -1,7 +1,7 @@
 <template>
     <el-menu
         class="nav-menu"
-        :default-active="$route.path"
+        :default-active="/(\/[a-z]+\/[a-z]+)/.exec(this.$route.path)[0]"
         :collapse="isCollapse"
         :unique-opened="false"
         mode="vertical"

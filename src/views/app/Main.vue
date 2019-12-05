@@ -58,3 +58,19 @@ body{
     padding: 0;
 }
 </style>
+<style lang="less">
+// 复写 el-dialog 的样式
+.el-dialog__body{
+    padding: 4px 18px;
+}
+.el-dialog__body > .el-form > .el-form-item{
+    margin-bottom: 8px;
+}
+// 复写 el-popconfirm 的样式
+.el-popconfirm__main{
+    margin: 8px 0;
+}
+.el-popconfirm__action{
+    float: right;
+}
+</style>

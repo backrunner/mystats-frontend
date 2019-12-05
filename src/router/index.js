@@ -42,7 +42,16 @@ const routes = [{
                 component: () => import( /* webpackChunkName: "app.page.appManage" */ '../views/app/pages/AppManage.vue'),
                 meta: {
                     title: '应用管理'
-                }
+                },
+                children: [{
+                    path: ':appId',
+                    name: 'app.page.appManage.appDetail',
+                    component: () => import( /* webpackChunkName: "app.page.appDetail" */ '../views/app/pages/AppDetail.vue'),
+                    meta: {
+                        title: '应用详情',
+                        paramName: 'appId'
+                    }
+                }]
             },
             {
                 path: 'usersettings',

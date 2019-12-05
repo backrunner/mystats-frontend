@@ -1,7 +1,9 @@
 <template>
     <div class="clearfix">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item v-for="item in levelList" :key="item.path" :to="item.path">{{item.meta.title}}</el-breadcrumb-item>
+            <template v-for="item in levelList">
+                <el-breadcrumb-item v-if="item.path != '/app'" :key="item.path" :to="item.path">{{item.meta.title}}</el-breadcrumb-item>
+            </template>
         </el-breadcrumb>
     </div>
 </template>
@@ -24,7 +26,13 @@ export default {
     },
     methods: {
         getBreadcrumb() {
-            this.levelList = this.$route.matched.splice(1, 1)
+            this.levelList = this.$route.matched
+            // 导航到正确的地方
+            this.levelList.forEach(route=>{
+                if (route.meta.paramName){
+                    route.path = route.path.replace(':'+route.meta.paramName, this.$route.params[route.meta.paramName])
+                }
+            });
         }
     }
 };
