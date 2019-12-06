@@ -70,14 +70,38 @@ const routes = [{
                 }
             },
             {
-                path: 'admin',
-                name: 'app.page.admin',
-                component: () => import( /* webpackChunkName: "app.page.admin" */ '../views/app/pages/Admin.vue'),
+                path: 'manageUser',
+                name: 'app.page.admin.manageuser',
+                component: () => import( /* webpackChunkName: "app.page.admin.manageuser" */ '../views/app/pages/manageUser.vue'),
                 meta: {
-                    title: '系统管理'
+                    title: '用户管理'
+                }
+            },
+            {
+                path: 'manageApp',
+                name: 'app.page.admin.manageapp',
+                component: () => import( /* webpackChunkName: "app.page.admin.manageapp" */ '../views/app/pages/manageApp.vue'),
+                meta: {
+                    title: '应用管理'
                 }
             }
         ]
+    },
+    {
+        path: '/error/404',
+        name: 'error.404',
+        component: () => import( /* webpackChunkName: "error.404" */ '../views/error/404.vue'),
+        meta: {
+            title: '404 not found'
+        }
+    },
+    {
+        path: '*',
+        name: 'error.404.default',
+        component: () => import( /* webpackChunkName: "error.404" */ '../views/error/404.vue'),
+        meta: {
+            title: '404 not found'
+        }
     }
 ]
 

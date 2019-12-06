@@ -1,7 +1,7 @@
 <template>
     <el-menu
         class="nav-menu"
-        :default-active="/(\/[a-z]+\/[a-z]+)/.exec(this.$route.path)[0]"
+        :default-active="defaultActive"
         :collapse="isCollapse"
         :unique-opened="false"
         mode="vertical"
@@ -27,10 +27,14 @@
             <span slot="title">用户设置</span>
         </el-menu-item>
         <template v-if="showAdmin">
-            <el-menu-item index="/app/admin">
-                <i class="el-icon-s-platform"></i>
-                <span slot="title">系统管理</span>
-            </el-menu-item>
+            <el-submenu index="sub-admin">
+                <template slot="title">
+                    <i class="el-icon-s-platform"></i>
+                    <span slot="title">系统管理</span>
+                </template>
+                <el-menu-item index="/app/manageUser">用户管理</el-menu-item>
+                <el-menu-item index="/app/manageApp">应用管理</el-menu-item>
+            </el-submenu>
         </template>
     </el-menu>
 </template>
@@ -41,15 +45,33 @@ export default {
     data() {
         return {
             isCollapse: false,
-            showAdmin: false
+            showAdmin: false,
+            defaultActive: ''
         };
     },
     created() {
         this.$bus.on("menu-status-changed", this.menuStatusChanged);
     },
+    watch: {
+        "$store.state.userinfo.role": 'canShowAdmin'
+    },
+    mounted() {
+        if (this.$route.path == '/app'){
+            this.defaultActive = '/app/dashboard';
+        } else {
+            this.defaultActive = /(\/[a-z]+\/[a-z]+)/.exec(this.$route.path).length > 0 ? /(\/[a-z]+\/[a-z]+)/.exec(this.$route.path)[0] : null
+        }
+    },
     methods: {
         menuStatusChanged(status) {
             this.isCollapse = status;
+        },
+        canShowAdmin(){
+            if (this.$store.state.userinfo.role == 'admin'){
+                this.showAdmin = true
+            } else {
+                this.showAdmin = false
+            }
         }
     }
 };

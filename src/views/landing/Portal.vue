@@ -30,7 +30,7 @@ export default {
                 if (response.status == 200) {
                     if (response.data.code == 200) {
                         this.$router.push({
-                            name: "app.main"
+                            name: "app.page.dashboard"
                         });
                     }
                 }

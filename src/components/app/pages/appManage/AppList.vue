@@ -112,7 +112,8 @@ export default {
     },
     methods: {
         handleView(index, row){
-            this.$router.push({ name: 'app.page.appManage.appDetail', params: { appId: row.id }})
+            console.log(row)
+            this.$router.push({ path: '/app/appManage/'+row.id, params: { appId: row.id }})
         },
         handleEdit(index, row){
             this.editAppDialog(row, index)
@@ -123,7 +124,7 @@ export default {
                 cancelButtonText: '取消',
                 type: 'danger'
             }).then(() => {
-                deleteApp(row.id)
+                this.deleteApp(row.id)
             }).catch(() => {
                 // catch cancel
                 // do nothing
@@ -223,7 +224,6 @@ export default {
                         this.$message.error('网络通信错误')
                     }
                 })
-                this.getList()
             }
         },
         renewAppKey(){
@@ -251,7 +251,8 @@ export default {
             }).then((response) => {
                 if (response.status == 200){
                     if (response.data.code == 200){
-                        this.$message.error('删除成功')
+                        this.$message.success('删除成功')
+                        this.$bus.emit('app-deleted');
                     } else {
                         this.$message.error(response.data.message)
                     }
@@ -276,10 +277,13 @@ export default {
 .applist-header {
     margin: 12px 0;
     height: 30px;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 .applist-header > span {
     line-height: 30px;
-    font-size: 16px;
+    font-size: 14px;
+    color: #909399;
     letter-spacing: 0.05rem;
 }
 .applist-header-operation {

@@ -1,7 +1,7 @@
 <template>
     <div class="user-avatar-wrapper">
         <el-dropdown trigger="click" @command="handleCommand">
-            <el-avatar class="user-avatar" :size="32" :src="avatarUrl"></el-avatar>
+            <el-avatar class="user-avatar" :size="size" :src="avatarUrl"></el-avatar>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="user-settings">用户设置</el-dropdown-item>
                 <el-dropdown-item command="logout">登出</el-dropdown-item>
@@ -11,14 +11,24 @@
 </template>
 
 <script>
+import Encryption from '@/utils/encryption.js'
 export default {
     name: "app.basic.userAvatar",
+    props: ['size'],
     computed: {
         avatarUrl(){
-            return this.$store.state.userAvatar == null || this.$store.state.userAvatar.length < 0 ? "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" : this.$state.userAvatar.length;
+            return this.getAvatarUrl();
         }
     },
     methods: {
+        getAvatarUrl(){
+            if (typeof this.$store.state.userinfo.email == 'undefined' || this.$store.state.userinfo.email == null || this.$store.state.userinfo.email.length < 1){
+                return "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            } else {
+                let email_hash = Encryption.md5(this.$store.state.userinfo.email);
+                return 'https://www.gravatar.com/avatar/'+email_hash+'?s='+this.size
+            }
+        },
         handleCommand(command) {
             if (command == 'user-settings'){
                 if (this.$route.name != 'app.page.userSettings'){

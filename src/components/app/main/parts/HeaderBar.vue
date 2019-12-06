@@ -7,7 +7,7 @@
             <Breadcrumb></Breadcrumb>
         </div>
         <div class="user-module">
-            <UserAvatar></UserAvatar>
+            <UserAvatar :size="32"></UserAvatar>
         </div>
     </div>
 </template>

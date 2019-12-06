@@ -209,7 +209,7 @@
                             return;
                         } else {
                             this.$router.push({
-                                name: 'app.main'
+                                name: 'app.page.dashboard'
                             })
                         }
                     });

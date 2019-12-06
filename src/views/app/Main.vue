@@ -29,8 +29,6 @@ export default {
                 }
             }
         });
-    },
-    mounted(){
         if(this.$route.name == 'app.main'){
             this.$router.push({
                 name: 'app.page.dashboard'
@@ -61,7 +59,7 @@ body{
 <style lang="less">
 // 复写 el-dialog 的样式
 .el-dialog__body{
-    padding: 4px 18px;
+    padding: 4px 20px;
 }
 .el-dialog__body > .el-form > .el-form-item{
     margin-bottom: 8px;

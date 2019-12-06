@@ -2,7 +2,7 @@
     <div class="clearfix">
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <template v-for="item in levelList">
-                <el-breadcrumb-item v-if="item.path != '/app'" :key="item.path" :to="item.path">{{item.meta.title}}</el-breadcrumb-item>
+                <el-breadcrumb-item v-if="item.path != '/app'" :key="item.path" :to="$route.path != item.path ? item.path : null" :class="$route.path == item.path ? 'current-path': ''">{{item.meta.title}}</el-breadcrumb-item>
             </template>
         </el-breadcrumb>
     </div>
@@ -38,8 +38,11 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 span {
-    font-weight: 500 !important
+    font-weight: 500 !important;
+}
+.current-path > span{
+    color: #909399 !important;
 }
 </style>

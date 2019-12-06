@@ -15,14 +15,29 @@
                     <div slot="header" class="card-header clearfix">
                         <span>头像</span>
                     </div>
-                    <el-form label-width="80px" :model="userInfoForm" id="form-avatar">
-                        <el-form-item label="当前头像">
-                            <el-avatar :size="100" :src="avatarUrl"></el-avatar>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" round id="btn-uploadAvatar">上传新头像</el-button>
-                        </el-form-item>
-                    </el-form>
+                    <div class="form-wrapper">
+                        <el-form label-width="80px" width="240px" :model="userInfoForm" id="form-avatar">
+                            <el-form-item label="当前头像">
+                                <el-avatar :size="avatarSize" :src="avatarUrl"></el-avatar>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" round id="btn-uploadAvatar" @click="setEmail">设置邮箱</el-button>
+                            </el-form-item>
+                        </el-form>
+                        <div class="avatar-desc">
+                            <div class="avatar-desc-label">
+                                <label>提示</label>
+                            </div>
+                            <div class="avatar-desc-text">
+                                <p>我们使用的是<Han/>Gravatar<Han/>的头像服务，头像由邮箱确定</p>
+                                <p>设置邮箱后，头像才能够正确显示</p>
+                                <p>上传新头像、绑定邮箱等需前往<Han/>Gravatar</p>
+                            </div>
+                            <div class="avatar-desc-action">
+                                <el-button type="primary" round @click="goGravatar">前往<Han/>Gravatar</el-button>
+                            </div>
+                        </div>
+                    </div>
                 </el-card>
                 <el-card class="box-card" id="card-basic">
                     <div slot="header" class="card-header clearfix">
@@ -99,7 +114,7 @@
                             <span>将您正在使用的帐号彻底废弃，从平台上注销</span>
                         </div>
                         <div class="box-card-action">
-                            <span>
+                            <span @click="popupCancelAccount">
                                 注销
                                 <i class="el-icon-arrow-right"></i>
                             </span>
@@ -138,12 +153,34 @@
                 <el-button type="primary" @click="submitChangePassword">确定</el-button>
             </span>
         </el-dialog>
+        <el-dialog
+            title="注销帐号"
+            :visible.sync="cancalAccountVisible"
+            width="30%"
+            :model="cancalAccountForm" :rules="cancalAccountFormRule">
+            <el-form>
+                <span>需要您的密码确认该操作，帐号注销后所有数据都将删除，无法恢复！</span>
+                <el-form-item label="密码">
+                    <el-input type="password" v-model="cancalAccountForm.password"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="cancalAccountVisible = false">取消</el-button>
+                <el-button type="danger" @click="submitCancelAccount">确定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
+import Encryption from '@/utils/encryption.js'
+import Han from '@/components/basic/Han.vue'
+
 export default {
     name: "app.page.usersettings",
+    components: {
+        Han
+    },
     data() {
         return {
             basicInfoStatus: "lock",
@@ -186,10 +223,21 @@ export default {
                     trigger: 'blur'
                 }]
             },
+            cancalAccountForm: {
+                password: ''
+            },
+            cancalAccountFormRule: {
+                password: [{
+                    required: true,
+                    trigger: 'blur'
+                }]
+            },
             loginLog: [],
             loginLogLoading: true,
             submitEditDisabled: false,
-            changePasswordDialogVisible: false
+            changePasswordDialogVisible: false,
+            cancalAccountVisible: false,
+            avatarSize: 100
         };
     },
     watch: {
@@ -220,10 +268,7 @@ export default {
             return this.$store.state.userinfo.username;
         },
         avatarUrl() {
-            return this.$store.state.userAvatar == null ||
-                this.$store.state.userAvatar.length < 0
-                ? "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-                : this.$state.userAvatar.length;
+            return this.getAvatarUrl()
         }
     },
     methods: {
@@ -299,6 +344,27 @@ export default {
                     }
                 })
             })
+        },
+        getAvatarUrl(){
+            if (typeof this.$store.state.userinfo.email == 'undefined' || this.$store.state.userinfo.email == null || this.$store.state.userinfo.email.length < 1){
+                return "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+            } else {
+                let email_hash = Encryption.md5(this.$store.state.userinfo.email);
+                return 'https://www.gravatar.com/avatar/'+email_hash+'?s='+this.avatarSize
+            }
+        },
+        setEmail() {
+            this.doEdit()
+        },
+        goGravatar() {
+            window.open('https://en.gravatar.com/emails/')
+        },
+        popupCancelAccount(){
+            this.cancalAccountForm.password = ''
+            this.cancalAccountVisible = true
+        },
+        submitCancelAccount(){
+
         }
     }
 };
@@ -400,11 +466,43 @@ export default {
 #card-avatar {
     margin-bottom: 16px;
 }
+.form-wrapper{
+    display: flex;
+}
+#form-avatar {
+    width: 240px;
+}
+.avatar-desc {
+    flex: 1 2 auto;
+}
+.avatar-desc-label {
+    float: left;
+    font-size: 14px;
+    color: #606266;
+}
+.avatar-desc-label > label {
+    line-height: 40px;
+}
+.avatar-desc-text {
+    display: block;
+    margin-left: 50px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #606266;
+}
+.avatar-desc-text > p{
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+.avatar-desc-action {
+    margin-top: 56px;
+    margin-left: 48px;
+}
 #form-avatar > .el-form-item > .el-form-item__content {
     line-height: 0 !important;
 }
 #btn-uploadAvatar {
-    margin-left: 6px;
+    margin-left: 14px;
 }
 
 // card-loginLog

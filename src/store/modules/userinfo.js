@@ -2,15 +2,15 @@ const state = {
     username: '',
     email: '',
     phone: '',
-    avatar: '',
+    role: ''
 }
 
 const mutations = {
     setUserInfo (state, userinfo){
-        state.username = userinfo.username;
+        state.username = userinfo.username
         state.email = userinfo.email
         state.phone = userinfo.phone
-        state.avatar = userinfo.avatar
+        state.role = userinfo.role
     },
     setUsername (state, username){
         state.username = username
@@ -21,8 +21,8 @@ const mutations = {
     setPhone (state, phone){
         state.phone = phone
     },
-    setAvatar (state, avatar){
-        state.avatar = avatar
+    setRole (state, role){
+        state.role = role
     }
 }
 

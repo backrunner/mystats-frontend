@@ -9,11 +9,16 @@ import router from './router'
 import qs from "qs"
 import './plugins/element.js'
 
+// 按需引入图表
+import VeLine from 'v-charts/lib/line.common'
+Vue.component(VeLine.name, VeLine)
+
 // 配置axios
 axios.defaults.baseURL = ''
 axios.defaults.withCredentials = true
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.timeout = 15000
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded'
 axios.defaults.transformRequest = [function (data) {
     return qs.stringify(data, {
         arrayFormat: 'brackets'

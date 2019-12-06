@@ -1,9 +1,9 @@
 <template>
-    <span>admin</span>
+    <span>manageApp</span>
 </template>
 
 <script>
 export default {
-    name: 'app.page.admin'
+    name: 'app.page.manageApp'
 }
 </script>

@@ -6,10 +6,10 @@
                     <OverviewCard icon="el-icon-box" label="应用总数" :value="totalAppCount"></OverviewCard>
                 </el-col>
                 <el-col :span="8">
-                    <OverviewCard icon="el-icon-pie-chart" label="一周内新增安装数" :value="recentInstallCount"></OverviewCard>
+                    <OverviewCard icon="el-icon-pie-chart" label="一周内新增安装记录" :value="recentInstallCount"></OverviewCard>
                 </el-col>
                 <el-col :span="8">
-                    <OverviewCard icon="el-icon-delete" label="一周内新增卸载数" :value="recentUninstallCount"></OverviewCard>
+                    <OverviewCard icon="el-icon-delete" label="一周内新增卸载记录" :value="recentUninstallCount"></OverviewCard>
                 </el-col>
             </el-row>
             <el-row class="row-appList">
@@ -49,16 +49,23 @@ export default {
             }
         }
     },
+    create(){
+        this.$bus.on('app-deleted', this.fetchOverview)
+    },
     mounted() {
-        // 获取概览数据
-        this.axios.get("/api/app/userOverview").then(response => {
-            if (response.status == 200) {
-                this.totalAppCount = response.data.data.totalAppCount;
-                this.recentInstallCount = response.data.data.recentInstallCount;
-                this.recentUninstallCount =
-                    response.data.data.recentUninstallCount;
-            }
-        });
+        this.fetchOverview()
+    },
+    methods: {
+        fetchOverview(){
+            // 获取概览数据
+            this.axios.get("/api/app/userOverview").then(response => {
+                if (response.status == 200) {
+                    this.totalAppCount = response.data.data.totalAppCount;
+                    this.recentInstallCount = response.data.data.recentInstallCount;
+                    this.recentUninstallCount = response.data.data.recentUninstallCount;
+                }
+            });
+        }
     }
 };
 </script>
@@ -70,6 +77,8 @@ export default {
 
 .row-appList {
     margin: 16px 8px;
-    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.075) !important;
+    border: 1px solid #EBEEF5;
+    border-radius: 4px;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.05) !important;
 }
 </style>
