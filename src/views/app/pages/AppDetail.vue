@@ -41,7 +41,7 @@
                                 <span>近 30 天安装量</span>
                             </div>
                             <div class="linechart">
-                                <ve-line :data="monthInstallCountData" :settings="monthInstallCountSettings" height="280px"></ve-line>
+                                <ve-line :data="monthInstallCountData" :settings="monthInstallCountSettings" :colors="['#f1b50e']" height="280px"></ve-line>
                             </div>
                         </div>
                     </el-col>
@@ -153,7 +153,23 @@ export default {
             }).then((response) => {
                 if (response.status == 200){
                     if (response.data.code == 200){
-                        this.monthInstallCountData.rows = response.data.data
+                        let installData = response.data.data;
+                        let time = this.$moment().subtract(30, 'days');
+                        for (let i=0;i<30;i++){
+                            let formatted = time.format('YYYY-M-D');
+                            if (installData.hasOwnProperty(formatted)){
+                                this.monthInstallCountData.rows.push({
+                                    date: formatted,
+                                    installCount: installData[formatted]
+                                })
+                            } else {
+                                this.monthInstallCountData.rows.push({
+                                    date: formatted,
+                                    installCount: 0
+                                })
+                            }
+                            time = time.add(1, 'days')
+                        }
                     }
                 }
             });

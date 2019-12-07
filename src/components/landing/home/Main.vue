@@ -93,17 +93,17 @@ img, i{
 }
 .row-start{
     text-align: center;
-    margin-top: 2.5rem;
+    margin-top: 2.75rem;
 }
 .row-cards {
-    padding-top: 3.5rem;
+    padding-top: 4.25rem;
     width: 900px;
     margin: 0 auto;
 }
 .el-card {
     margin: 0 1.25rem;
     height: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1) !important;
 }
 .card-logo {
     text-align: center;

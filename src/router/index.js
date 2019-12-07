@@ -84,6 +84,14 @@ const routes = [{
                 meta: {
                     title: '应用管理'
                 }
+            },
+            {
+                path: 'announcement',
+                name: 'app.page.admin.announcement',
+                component: () => import( /* webpackChunkName: "app.page.admin.announcement" */ '../views/app/pages/Announcement.vue'),
+                meta: {
+                    title: '公告管理'
+                }
             }
         ]
     },

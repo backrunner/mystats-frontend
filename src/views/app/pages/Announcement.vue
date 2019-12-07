@@ -1,9 +1,9 @@
 <template>
-    <div class="appview appview-report">
-        <div class="report-wrapper">
+    <div class="appview appview-announcement">
+        <div class="announcement-wrapper">
             <el-row class="row-shadow row-appList">
                 <el-col :span="24">
-                    <ReportList></ReportList>
+                    <AnnouncementList></AnnouncementList>
                 </el-col>
             </el-row>
         </div>
@@ -11,12 +11,11 @@
 </template>
 
 <script>
-import ReportList from '@/components/app/pages/report/ReportList.vue'
-
+import AnnouncementList from '@/components/app/pages/admin/AnnouncementList.vue';
 export default {
-    name: 'app.page.report',
+    name: 'app.page.announcement',
     components: {
-        ReportList
+        AnnouncementList
     }
 }
 </script>

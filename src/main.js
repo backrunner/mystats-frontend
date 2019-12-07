@@ -11,7 +11,9 @@ import './plugins/element.js'
 
 // 按需引入图表
 import VeLine from 'v-charts/lib/line.common'
+import VeBar from 'v-charts/lib/bar.common'
 Vue.component(VeLine.name, VeLine)
+Vue.component(VeBar.name, VeBar)
 
 // 配置axios
 axios.defaults.baseURL = ''

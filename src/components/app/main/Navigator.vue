@@ -34,6 +34,7 @@
                 </template>
                 <el-menu-item index="/app/manageUser">用户管理</el-menu-item>
                 <el-menu-item index="/app/manageApp">应用管理</el-menu-item>
+                <el-menu-item index="/app/announcement">公告管理</el-menu-item>
             </el-submenu>
         </template>
     </el-menu>

@@ -9,7 +9,7 @@
         </div>
         <div class="applist-table">
             <el-table :data="appListData.slice((appListCurrentPage-1)*appListSize,appListCurrentPage*appListSize)" style="width: 100%;" v-loading="appListLoading" :fit="true">
-                <el-table-column prop="id" label="ID" width="100"></el-table-column>
+                <el-table-column prop="id" label="ID" width="100" :sortable="true"></el-table-column>
                 <el-table-column prop="bundleId" label="Bundle ID" width="220"></el-table-column>
                 <el-table-column prop="displayName" label="名称" width="220"></el-table-column>
                 <el-table-column prop="appKey" label="App Key" width="380"></el-table-column>
@@ -104,7 +104,7 @@ export default {
                 name: [{
                     required: true,
                     message: '名称不能为空',
-                    trigger: 'name'
+                    trigger: 'blur'
                 }]
             },
             submitEditDisabled: false
@@ -112,7 +112,6 @@ export default {
     },
     methods: {
         handleView(index, row){
-            console.log(row)
             this.$router.push({ path: '/app/appManage/'+row.id, params: { appId: row.id }})
         },
         handleEdit(index, row){

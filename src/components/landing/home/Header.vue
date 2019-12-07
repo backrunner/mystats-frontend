@@ -36,7 +36,7 @@ span{
     padding-top: 2.75rem;
 }
 #logo{
-    width: 10rem;
+    width: 8.75rem;
     user-select: none;
     -webkit-user-drag: none;
 }
