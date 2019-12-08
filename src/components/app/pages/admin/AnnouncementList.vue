@@ -51,7 +51,7 @@ export default {
         return {
             annoData: [],
             currentPage: 1,
-            pageSize: 20,
+            pageSize: 10,
             annoLoading: false,
             total: 0,
             // 表单

@@ -37,7 +37,7 @@ export default {
     color: #f1b50e;
     letter-spacing: 0.175em;
     text-align: center;
-    margin-left: 15px;
+    margin-left: 20px;
 }
 .error-desc {
     font-weight: 700;

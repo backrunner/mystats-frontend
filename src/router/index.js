@@ -70,7 +70,7 @@ const routes = [{
                 }
             },
             {
-                path: 'manageUser',
+                path: 'manageuser',
                 name: 'app.page.admin.manageuser',
                 component: () => import( /* webpackChunkName: "app.page.admin.manageuser" */ '../views/app/pages/manageUser.vue'),
                 meta: {
@@ -78,7 +78,7 @@ const routes = [{
                 }
             },
             {
-                path: 'manageApp',
+                path: 'manageapp',
                 name: 'app.page.admin.manageapp',
                 component: () => import( /* webpackChunkName: "app.page.admin.manageapp" */ '../views/app/pages/manageApp.vue'),
                 meta: {

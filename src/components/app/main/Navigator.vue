@@ -32,8 +32,8 @@
                     <i class="el-icon-s-platform"></i>
                     <span slot="title">系统管理</span>
                 </template>
-                <el-menu-item index="/app/manageUser">用户管理</el-menu-item>
-                <el-menu-item index="/app/manageApp">应用管理</el-menu-item>
+                <el-menu-item index="/app/manageuser">用户管理</el-menu-item>
+                <el-menu-item index="/app/manageapp">应用管理</el-menu-item>
                 <el-menu-item index="/app/announcement">公告管理</el-menu-item>
             </el-submenu>
         </template>
@@ -60,7 +60,7 @@ export default {
         if (this.$route.path == '/app'){
             this.defaultActive = '/app/dashboard';
         } else {
-            this.defaultActive = /(\/[a-z]+\/[a-z]+)/.exec(this.$route.path).length > 0 ? /(\/[a-z]+\/[a-z]+)/.exec(this.$route.path)[0] : null
+            this.defaultActive = /(\/[a-zA-Z]+\/[a-zA-Z]+)/.exec(this.$route.path).length > 0 ? /(\/[a-zA-Z]+\/[a-zA-Z]+)/.exec(this.$route.path)[0] : null
         }
     },
     methods: {

@@ -58,8 +58,5 @@ export default {
     .footer-split{
         display: none;
     }
-    .row-copyright {
-        display: none;
-    }
 }
 </style>

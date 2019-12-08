@@ -9,6 +9,9 @@
                         <span class="info-name-appkey">App Key: <span class="appkey-value appkey-value-hidden" v-if="appKeyStatus == 'hidden'">****************************************</span><span v-else class="appkey-value">{{appKey}}</span>
                             <i id="icon-appKey-view" @click="appKeyStatus == 'hidden'?appKeyStatus = 'display' : appKeyStatus = 'hidden'" class="el-icon-view"></i>
                         </span>
+                        <div class="info-name-disabled" v-if="!appEnabled">
+                            <span>不可用</span>
+                        </div>
                     </div>
                     <div class="info-desc" v-if="desc.length > 0">
                         <span class="info-desc">{{desc}}</span>
@@ -75,6 +78,7 @@ export default {
             website: '',
             appKey: '',
             appKeyStatus: 'hidden',
+            appEnabled: true,
             currentVersionData: [],
             statUninstall: true,
             installCount: 0,
@@ -121,6 +125,7 @@ export default {
                         this.statUninstall = response.data.data.statUninstall
                         this.installCount = response.data.data.installCount
                         this.uninstallCount = response.data.data.uninstallCount
+                        this.appEnabled = response.data.data.isEnabled
                         // 当前版本信息的转换
                         this.currentVersionData = []
                         for (var c in response.data.data.currentVersion){
@@ -224,6 +229,15 @@ export default {
 }
 .info-website > a:hover{
     color: #f1b50e;
+}
+.info-name-disabled {
+    float: right;
+    background: #F56C6C;
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+    margin: 3px 0;
+    padding: 4px 8px;
 }
 .row-table{
     margin: 0 8px;

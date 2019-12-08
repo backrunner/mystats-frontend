@@ -41,12 +41,14 @@ export default {
     },
     methods: {
         getList(){
+            this.reportLoading = true
             this.axios.get('/api/app/getReport', {
                 params: {
                     page: this.currentPage,
                     pageSize: this.pageSize
                 }
             }).then((response) => {
+                this.reportLoading = false
                 if (response.status == 200 && response.data.code == 200){
                     this.total = response.data.data.total;
                     this.reportData = response.data.data.listData;
@@ -55,6 +57,7 @@ export default {
         },
         listCurrentChange(currentPage){
             this.currentPage = currentPage
+            this.getList()
         }
     }
 }

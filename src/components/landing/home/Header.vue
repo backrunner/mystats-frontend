@@ -59,7 +59,7 @@ span{
         font-size: 1.75rem;
     }
     .row-logo {
-        padding-top: 1.25rem;
+        padding-top: 2.5rem;
     }
 }
 @media (max-width: 768px) {
@@ -67,7 +67,7 @@ span{
         width: 6.5rem;
     }
     .row-logo {
-        padding-top: 2.5rem;
+        padding-top: 2rem;
     }
 }
 </style>

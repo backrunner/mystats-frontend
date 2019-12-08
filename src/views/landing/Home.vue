@@ -1,10 +1,10 @@
 <template>
     <el-container>
-        <el-main>
+        <el-main :class="displayFooter ? '' : 'no-footer'">
             <Header></Header>
             <Main></Main>
         </el-main>
-        <el-footer>
+        <el-footer v-if="displayFooter">
             <Footer></Footer>
         </el-footer>
     </el-container>
@@ -21,6 +21,26 @@ export default {
         Header,
         Main,
         Footer
+    },
+    data(){
+        return {
+            displayFooter: true
+        }
+    },
+    mounted(){
+        addEventListener('resize',()=>{
+            this.windowResize();
+        })
+        this.windowResize()
+    },
+    methods: {
+        windowResize(){
+            if (document.documentElement.clientWidth > 768){
+                this.displayFooter = true
+            } else {
+                this.displayFooter = false
+            }
+        }
     }
 }
 </script>
@@ -37,5 +57,8 @@ body{
 }
 .el-footer{
     height: 80px !important;
+}
+.no-footer{
+    padding-bottom: 40px !important;
 }
 </style>
