@@ -24,7 +24,6 @@
                     </el-form-item>
                     <div class="form-beyond-footer">
                         <el-checkbox v-model="loginForm.rememberMe">记住我</el-checkbox>
-                        <a class="forget-password">忘记密码?</a>
                     </div>
                     <el-form-item>
                         <el-button type="primary" @click="onLogin" class="form-footer-btn form-footer-btn-primary" :disabled="captchaStatus">登录</el-button>

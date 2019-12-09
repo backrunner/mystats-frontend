@@ -166,7 +166,7 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="cancalAccountVisible = false">取消</el-button>
-                <el-button type="danger" @click="submitCancelAccount">确定</el-button>
+                <el-button type="danger" @click="submitCancelAccount" :disabled="submitCancelAccountDisabled">确定</el-button>
             </span>
         </el-dialog>
     </div>
@@ -235,6 +235,7 @@ export default {
             loginLog: [],
             loginLogLoading: true,
             submitEditDisabled: false,
+            submitCancelAccountDisabled: false,
             changePasswordDialogVisible: false,
             cancalAccountVisible: false,
             avatarSize: 100
@@ -364,7 +365,23 @@ export default {
             this.cancalAccountVisible = true
         },
         submitCancelAccount(){
-
+            this.submitCancelAccountDisabled = true
+            this.axios.post('/api/user/cancelAccount', {
+                password: this.cancalAccountForm.password
+            }).then((response) => {
+                if (response.status == 200){
+                    if (response.data.code == 200){
+                        this.$message.success('注销成功')
+                        setTimeout(()=>{
+                            this.$router.push({
+                                name: 'landing.home'
+                            })
+                        }, 2000);
+                    }
+                } else {
+                    this.$message.error('网络通信错误')
+                }
+            });
         }
     }
 };
