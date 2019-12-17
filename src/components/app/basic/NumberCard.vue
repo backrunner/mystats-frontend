@@ -49,9 +49,6 @@ export default {
 .card-number{
     height: @card-number-height;
 }
-.card-number > .el-card__body{
-
-}
 .card-number-data{
     margin: auto 6px;
 }

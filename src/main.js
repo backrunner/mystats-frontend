@@ -60,7 +60,7 @@ Vue.prototype.$moment = moment
 Vue.config.productionTip = false
 
 // 默认 title
-document.title = 'myStatics'
+document.title = 'myStats'
 
 // 修改页面 title
 router.beforeEach((to, from, next) => {

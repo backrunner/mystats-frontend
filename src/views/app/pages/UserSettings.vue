@@ -157,10 +157,10 @@
             title="注销帐号"
             :visible.sync="cancalAccountVisible"
             width="30%"
-            :model="cancalAccountForm" :rules="cancalAccountFormRule">
-            <el-form>
+            >
+            <el-form :model="cancalAccountForm" :rules="cancalAccountFormRule">
                 <span>需要您的密码确认该操作，帐号注销后所有数据都将删除，无法恢复！</span>
-                <el-form-item label="密码">
+                <el-form-item prop="password" label="密码">
                     <el-input type="password" v-model="cancalAccountForm.password"></el-input>
                 </el-form-item>
             </el-form>
@@ -365,22 +365,28 @@ export default {
             this.cancalAccountVisible = true
         },
         submitCancelAccount(){
-            this.submitCancelAccountDisabled = true
-            this.axios.post('/api/user/cancelAccount', {
-                password: this.cancalAccountForm.password
-            }).then((response) => {
-                if (response.status == 200){
-                    if (response.data.code == 200){
-                        this.$message.success('注销成功')
-                        setTimeout(()=>{
-                            this.$router.push({
-                                name: 'landing.home'
-                            })
-                        }, 2000);
-                    }
-                } else {
-                    this.$message.error('网络通信错误')
+            this.$refs['cancelAccountForm'].validate((valid) => {
+                if (!valid) {
+                    return false;
                 }
+                this.submitCancelAccountDisabled = true
+                this.axios.post('/api/user/cancelAccount', {
+                    password: this.cancalAccountForm.password
+                }).then((response) => {
+                    this.submitCancelAccountDisabled = false
+                    if (response.status == 200){
+                        if (response.data.code == 200){
+                            this.$message.success('注销成功')
+                            setTimeout(()=>{
+                                this.$router.push({
+                                    name: 'landing.home'
+                                })
+                            }, 2000);
+                        }
+                    } else {
+                        this.$message.error('网络通信错误')
+                    }
+                });
             });
         }
     }

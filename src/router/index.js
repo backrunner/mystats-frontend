@@ -9,7 +9,7 @@ const routes = [{
         name: 'landing.home',
         component: Home,
         meta: {
-            title: 'myStatics'
+            title: 'myStats'
         }
     },
     {
@@ -17,7 +17,7 @@ const routes = [{
         name: 'landing.portal',
         component: () => import( /* webpackChunkName: "landing.portal" */ '../views/landing/Portal.vue'),
         meta: {
-            title: '登录 - myStatics'
+            title: '登录 - myStats'
         }
     },
     {

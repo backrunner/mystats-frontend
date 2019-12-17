@@ -133,45 +133,50 @@ export default {
             this.currentPage = currentPage
         },
         submitAnno(){
-            this.submitAnnoDisabled = true;
-            if (this.annoFormStatus == 'add'){
-                this.axios.post('/api/admin/addAnnouncement', {
-                    desc: this.annoForm.desc,
-                    content: this.annoForm.content
-                }).then((response) => {
-                    this.submitAnnoDisabled = false;
-                    if (response.status == 200){
-                        if (response.data.code == 200){
-                            this.$message.success('添加成功')
-                            this.dialogVisible = false
+            this.$refs['annoForm'].validate((valid) => {
+                if (!valid) {
+                    return false;
+                }
+                this.submitAnnoDisabled = true;
+                if (this.annoFormStatus == 'add'){
+                    this.axios.post('/api/admin/addAnnouncement', {
+                        desc: this.annoForm.desc,
+                        content: this.annoForm.content
+                    }).then((response) => {
+                        this.submitAnnoDisabled = false;
+                        if (response.status == 200){
+                            if (response.data.code == 200){
+                                this.$message.success('添加成功')
+                                this.dialogVisible = false
+                            } else {
+                                this.$mesage.error(response.data.message)
+                            }
+                            this.getList()
                         } else {
-                            this.$mesage.error(response.data.message)
+                            this.$message.error('网络通信错误')
                         }
-                        this.getList()
-                    } else {
-                        this.$message.error('网络通信错误')
-                    }
-                });
-            } else if (this.annoFormStatus == 'edit'){
-                this.axios.post('/api/admin/updateAnnouncement', {
-                    id: this.annoForm.id,
-                    desc: this.annoForm.desc,
-                    content: this.annoForm.content
-                }).then((response) => {
-                    this.submitAnnoDisabled = false;
-                    if (response.status == 200){
-                        if (response.data.code == 200){
-                            this.$message.success('编辑成功')
-                            this.dialogVisible = false
+                    });
+                } else if (this.annoFormStatus == 'edit'){
+                    this.axios.post('/api/admin/updateAnnouncement', {
+                        id: this.annoForm.id,
+                        desc: this.annoForm.desc,
+                        content: this.annoForm.content
+                    }).then((response) => {
+                        this.submitAnnoDisabled = false;
+                        if (response.status == 200){
+                            if (response.data.code == 200){
+                                this.$message.success('编辑成功')
+                                this.dialogVisible = false
+                            } else {
+                                this.$message.error(response.data.message)
+                            }
+                            this.getList()
                         } else {
-                            this.$message.error(response.data.message)
+                            this.$message.error('网络通信错误')
                         }
-                        this.getList()
-                    } else {
-                        this.$message.error('网络通信错误')
-                    }
-                });
-            }
+                    });
+                }
+            });
         },
         deleteAnno(id){
             this.axios.post('/api/admin/deleteAnnouncement', {

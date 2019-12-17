@@ -183,47 +183,52 @@ export default {
             this.appForm.statUninstall = true
         },
         submitAppForm(){
-            if (this.appFormStatus == 'add'){
-                this.axios.post('/api/app/addApp', {
-                    bundleId: this.appForm.bundleId,
-                    name: this.appForm.name,
-                    desc: this.appForm.desc,
-                    website: this.appForm.website,
-                    statUninstall: this.appForm.statUninstall
-                }).then((response) => {
-                    if (response.status == 200){
-                        if (response.data.code == 200){
-                            this.$message.success('添加成功')
-                            this.appDialogVisible = false
+            this.$refs['appForm'].validate((valid) => {
+                if (!valid) {
+                    return false;
+                }
+                if (this.appFormStatus == 'add'){
+                    this.axios.post('/api/app/addApp', {
+                        bundleId: this.appForm.bundleId,
+                        name: this.appForm.name,
+                        desc: this.appForm.desc,
+                        website: this.appForm.website,
+                        statUninstall: this.appForm.statUninstall
+                    }).then((response) => {
+                        if (response.status == 200){
+                            if (response.data.code == 200){
+                                this.$message.success('添加成功')
+                                this.appDialogVisible = false
+                            } else {
+                                this.$message.error(response.data.message)
+                            }
+                            this.getList()
                         } else {
-                            this.$message.error(response.data.message)
+                            this.$message.error('网络通信错误')
                         }
-                        this.getList()
-                    } else {
-                        this.$message.error('网络通信错误')
-                    }
-                })
-            } else if (this.appFormStatus == 'edit') {
-                this.axios.post('/api/app/editApp', {
-                    appId: this.appForm.id,
-                    name: this.appForm.name,
-                    desc: this.appForm.desc,
-                    website: this.appForm.website,
-                    statUninstall: this.appForm.statUninstall
-                }).then((response) => {
-                    if (response.status == 200){
-                        if (response.data.code == 200){
-                            this.$message.success('编辑成功')
-                            this.appDialogVisible = false
+                    })
+                } else if (this.appFormStatus == 'edit') {
+                    this.axios.post('/api/app/editApp', {
+                        appId: this.appForm.id,
+                        name: this.appForm.name,
+                        desc: this.appForm.desc,
+                        website: this.appForm.website,
+                        statUninstall: this.appForm.statUninstall
+                    }).then((response) => {
+                        if (response.status == 200){
+                            if (response.data.code == 200){
+                                this.$message.success('编辑成功')
+                                this.appDialogVisible = false
+                            } else {
+                                this.$message.error(response.data.message)
+                            }
+                            this.getList()
                         } else {
-                            this.$message.error(response.data.message)
+                            this.$message.error('网络通信错误')
                         }
-                        this.getList()
-                    } else {
-                        this.$message.error('网络通信错误')
-                    }
-                })
-            }
+                    })
+                }
+            });
         },
         renewAppKey(){
             this.submitEditDisabled = true

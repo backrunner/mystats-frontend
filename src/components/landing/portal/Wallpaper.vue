@@ -1,7 +1,7 @@
 <template>
     <div class="wallpaper" v-lazy:background-image="wallpaper">
         <div class="wallpaper-loading">
-            <img src="https://img.backrunner.top/mystatics/loading.gif">
+            <img src="https://img.backrunner.top/mystats/loading.gif">
         </div>
         <div class="wallpaper-overlay">
             <span>图片来自<Han/>Unsplash</span>

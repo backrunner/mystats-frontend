@@ -6,7 +6,7 @@
             </el-col>
             <el-col :span="24">
                 <div class="title">
-                    <span>myStatics</span>
+                    <span>myStats</span>
                 </div>
             </el-col>
             <el-col :span="24">

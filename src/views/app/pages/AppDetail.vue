@@ -135,17 +135,9 @@ export default {
                             })
                         }
                     } else {
-                        if (response.data.code == 401){
-                            // 未授权访问
-                            this.$router.push({
-                                name: 'error.401'
-                            });
-                        } else {
-                            // 其他错误，跳转到404
-                            this.$router.push({
-                                name: 'error.404'
-                            });
-                        }
+                        this.$router.push({
+                            name: 'error.404'
+                        });
                     }
                 }
             });
