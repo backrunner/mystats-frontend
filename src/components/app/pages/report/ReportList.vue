@@ -8,14 +8,15 @@
         </div>
         <div class="reportlist-table">
             <el-table :data="reportData" style="width: 100%;" v-loading="reportLoading" :fit="true">
-                <el-table-column prop="bundleId" label="Bundle ID"></el-table-column>
-                <el-table-column prop="name" label="应用名称"></el-table-column>
+                <el-table-column prop="id" label="ID" width="80"></el-table-column>
+                <el-table-column prop="bundleId" label="Bundle ID" width="220"></el-table-column>
+                <el-table-column prop="name" label="应用名称" width="180"></el-table-column>
                 <el-table-column prop="installCount" label="总安装量"></el-table-column>
                 <el-table-column prop="uninstallCount" label="总卸载量"></el-table-column>
-                <el-table-column prop="weekInstallCount" label="近 7 天新增安装记录"></el-table-column>
-                <el-table-column prop="weekUninstallCount" label="近 7 天新增卸载记录"></el-table-column>
-                <el-table-column prop="monthInstallCount" label="近 30 天新增安装记录"></el-table-column>
-                <el-table-column prop="monthUninstallCount" label="近 30 天新增卸载记录"></el-table-column>
+                <el-table-column prop="weekInstallCount" label="近 7 天新增安装"></el-table-column>
+                <el-table-column prop="weekUninstallCount" label="近 7 天新增卸载"></el-table-column>
+                <el-table-column prop="monthInstallCount" label="近 30 天新增安装"></el-table-column>
+                <el-table-column prop="monthUninstallCount" label="近 30 天新增卸载"></el-table-column>
             </el-table>
         </div>
         <div class="reportlist-table-pagination">

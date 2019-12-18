@@ -84,6 +84,8 @@ span {
 }
 .nav-menu {
     height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 .nav-menu:not(.el-menu--collapse) {
     width: 200px;

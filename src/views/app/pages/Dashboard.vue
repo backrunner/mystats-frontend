@@ -17,7 +17,7 @@
             </el-row>
             <el-row class="row-main">
                 <el-col :span="10">
-                    <el-row class="row-shadow row-fall row-announcement">
+                    <el-row class="row-shadow row-fall row-announcement" v-if="latestAnnouncement && latestAnnouncement.length > 0">
                         <el-col :span="24">
                             <div class="announcement-header">
                                 <span>最新公告<i class="el-icon-message-solid" style="margin-left: 8px;"></i></span>
@@ -44,8 +44,13 @@
                             <div class="chart-header">
                                 <span>应用统计概览</span>
                             </div>
-                            <div class="chart chart-stat">
-                                <ve-bar :data="appStatData" :settings="appStatChartSettings" :colors="['#f1b50e', '#f56c6c']" height="640px"></ve-bar>
+                            <div class="chart chart-stat" v-if="appStatData">
+                                <ve-bar :data="appStatData" :settings="appStatChartSettings" :colors="['#f1b50e', '#f56c6c']" height="560px"></ve-bar>
+                            </div>
+                            <div class="chart-nodata" v-else>
+                                <div class="chart-nodata-text">
+                                    <span>暂无应用数据</span>
+                                </div>
                             </div>
                         </div>
                     </el-row>
@@ -202,7 +207,19 @@ export default {
 .chart{
     height: 300px;
 }
+.chart-nodata {
+    padding: 60px 28px;
+}
+.chart-nodata-text {
+    width: max-content;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #909399;
+    letter-spacing: 0.05em;
+    user-select: none;
+    -webkit-user-drag: none;
+}
 .chart-stat{
-    height: 610px;
+    height: 532px;
 }
 </style>
