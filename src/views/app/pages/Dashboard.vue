@@ -44,7 +44,7 @@
                             <div class="chart-header">
                                 <span>应用统计概览</span>
                             </div>
-                            <div class="chart chart-stat" v-if="appStatData">
+                            <div class="chart chart-stat" v-if="appStatData.rows.length > 0">
                                 <ve-bar :data="appStatData" :settings="appStatChartSettings" :colors="['#f1b50e', '#f56c6c']" height="560px"></ve-bar>
                             </div>
                             <div class="chart-nodata" v-else>
@@ -208,7 +208,7 @@ export default {
     height: 300px;
 }
 .chart-nodata {
-    padding: 60px 28px;
+    padding: 32px 28px;
 }
 .chart-nodata-text {
     width: max-content;
