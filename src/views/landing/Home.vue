@@ -3,10 +3,8 @@
         <el-main :class="displayFooter ? '' : 'no-footer'">
             <Header></Header>
             <Main></Main>
+            <Footer v-if="displayFooter"></Footer>
         </el-main>
-        <el-footer v-if="displayFooter">
-            <Footer></Footer>
-        </el-footer>
     </el-container>
 </template>
 

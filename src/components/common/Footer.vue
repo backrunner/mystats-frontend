@@ -31,6 +31,10 @@ export default {
 </script>
 
 <style lang="less" scope>
+.footer {
+    margin-top: 6rem;
+    margin-bottom: 1.5rem;
+}
 .orgLink{
     color: #909399;
     transition: 100ms;
@@ -53,6 +57,12 @@ export default {
 }
 .author-split{
     margin: 0 0.8rem;
+}
+@media (max-width: 1600px) {
+    .footer {
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+    }
 }
 @media (max-width: 768px) {
     .footer-split{

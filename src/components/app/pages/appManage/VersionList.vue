@@ -113,11 +113,11 @@ export default {
 <style lang="less" scoped>
 .versionlist-wrapper {
     padding: 12px 20px;
-}
-.versionlist-header > span {
-    color: #909399;
-    font-size: 14px;
-    line-height: 32px;
+    span {
+        color: #909399;
+        font-size: 14px;
+        line-height: 32px;
+    }
 }
 .versionlist-header-operation {
     float: right;

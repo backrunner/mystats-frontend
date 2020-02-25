@@ -224,12 +224,12 @@ export default {
     height: 30px;
     user-select: none;
     -webkit-user-drag: none;
-}
-.list-header > span {
-    line-height: 30px;
-    font-size: 14px;
-    color: #909399;
-    letter-spacing: 0.05rem;
+    span {
+        line-height: 30px;
+        font-size: 14px;
+        color: #909399;
+        letter-spacing: 0.05rem;
+    }
 }
 .list-header-operation {
     float: right;

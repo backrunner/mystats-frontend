@@ -33,7 +33,7 @@ span{
 }
 .row-logo {
     text-align: center;
-    padding-top: 2.75rem;
+    padding-top: 3.5rem;
 }
 #logo{
     width: 8.75rem;
@@ -52,14 +52,14 @@ span{
 }
 @media (max-width: 1600px){
     #logo{
-        width: 8rem;
+        width: 7.75rem;
     }
     .title{
         padding: 1rem;
         font-size: 1.75rem;
     }
     .row-logo {
-        padding-top: 2.5rem;
+        padding-top: 1rem;
     }
 }
 @media (max-width: 768px) {

@@ -103,18 +103,18 @@ img, i{
 .el-card {
     margin: 0 1.25rem;
     height: 300px;
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
 }
 .card-logo {
     text-align: center;
     padding: 1rem;
     height: 68px;
-}
-.card-logo > i{
-    font-size: 3.75rem;
-}
-.card-logo > img {
-    width: 4rem;
+    i{
+        font-size: 3.75rem;
+    }
+    img {
+        width: 4rem;
+    }
 }
 #icon-stat {
     color: #F1B50E;
@@ -134,12 +134,24 @@ img, i{
     text-align: center;
     letter-spacing: 0.025rem;
 }
-@media (max-width: 1600px){
+@media (max-width: 1600px) {
     .row-start{
-        margin-top: 1.75rem;
+        margin-top: 1.5rem;
     }
     .row-cards {
-        padding-top: 2.5rem;
+        padding-top: 2.125rem;
+    }
+    .el-card {
+        height: 280px;
+    }
+    .card-logo {
+        padding: 0.625rem;
+    }
+    .card-title {
+        padding-top: 0.75rem;
+    }
+    .card-desc {
+        padding-top: 0.825rem;
     }
 }
 @media (max-width: 1024px) {

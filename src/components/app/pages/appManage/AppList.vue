@@ -283,23 +283,23 @@ export default {
     height: 30px;
     user-select: none;
     -webkit-user-drag: none;
-}
-.applist-header > span {
-    line-height: 30px;
-    font-size: 14px;
-    color: #909399;
-    letter-spacing: 0.05rem;
+    span {
+        line-height: 30px;
+        font-size: 14px;
+        color: #909399;
+        letter-spacing: 0.05rem;
+    }
 }
 .applist-header-operation {
     float: right;
 }
-.applist-table-pagination{
+.applist-table-pagination {
     margin-top: 16px;
 }
-#appListPagination{
+#appListPagination {
     padding: 0;
 }
-#btn-renewAppKey{
+#btn-renewAppKey {
     margin-top: 8px;
     float: right !important;
 }

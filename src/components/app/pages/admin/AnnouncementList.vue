@@ -207,12 +207,12 @@ export default {
     height: 30px;
     user-select: none;
     -webkit-user-drag: none;
-}
-.annolist-header > span {
-    line-height: 30px;
-    font-size: 14px;
-    color: #909399;
-    letter-spacing: 0.05rem;
+    span {
+        line-height: 30px;
+        font-size: 14px;
+        color: #909399;
+        letter-spacing: 0.05rem;
+    }
 }
 .annolist-header-operation {
     float: right;

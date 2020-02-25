@@ -29,7 +29,7 @@ axios.defaults.transformRequest = [function (data) {
 
 axios.interceptors.response.use(
     function (response) {
-      return response
+        return response
     },
     function (error) {
         if (error.response) {

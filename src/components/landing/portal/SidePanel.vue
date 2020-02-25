@@ -211,6 +211,8 @@
                                 name: 'app.page.dashboard'
                             })
                         }
+                    }).catch((err) => {
+                        this.$message.error('请求时出现错误');
                     });
                 } else if (this.status == 'register'){
                     this.axios.post('/api/portal/register', {
@@ -230,6 +232,8 @@
                             this.$message.success('注册成功')
                             this.status = 'login'
                         }
+                    }).catch((err) => {
+                        this.$message.error('请求时出现错误');
                     });
                 }
             },
@@ -258,16 +262,15 @@
     .portal-title-logo {
         user-select: none;
         -webkit-user-drag: none;
-    }
-
-    .portal-title-logo>img {
-        width: 5rem;
-        margin-left: -4px;
-        margin-bottom: 2rem;
+        img {
+            width: 5rem;
+            margin-left: -4px;
+            margin-bottom: 2rem;
+        }
     }
 
     .row-title {
-        padding-top: 11vh;
+        padding-top: 8rem;
         margin-bottom: 22px;
     }
 
@@ -300,22 +303,32 @@
     }
 
     .back-home {
-        margin-top: 24vh;
-    }
-
-    .back-home>a {
-        font-size: 14px;
-        transition: 200ms;
-        user-select: none;
-        -webkit-user-drag: none;
-    }
-
-    .back-home>a:hover {
-        color: #F1B50E;
-        cursor: pointer;
+        margin-top: 16em;
+        a {
+            font-size: 14px;
+            transition: 200ms;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        a:hover {
+            color: #F1B50E;
+            cursor: pointer;
+        }
     }
 
     .recaptcha{
         display: none;
+    }
+
+    @media (max-width: 1600px) {
+        .back-home {
+            margin-top: 14em;
+        }
+        .row-title {
+            padding-top: 3.5rem;
+        }
+        .back-home {
+            margin-top: 9em;
+        }
     }
 </style>

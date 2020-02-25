@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-aside width="540px" class="side-panel">
+        <el-aside class="side-panel">
             <SidePanel></SidePanel>
         </el-aside>
         <el-container>
@@ -50,6 +50,7 @@ body {
     margin: 0;
 }
 .side-panel {
+    width: 540px !important;
     padding: 2.25rem;
     box-shadow: 0 0 1.5rem 0 #6e6e6e;
     overflow: hidden;
@@ -58,5 +59,12 @@ body {
 .main {
     padding: 0;
     z-index: 0;
+}
+
+@media (max-width: 1600px) {
+    .side-panel {
+        width: 480px !important;
+        padding: 1.5rem 2.25rem;
+    }
 }
 </style>

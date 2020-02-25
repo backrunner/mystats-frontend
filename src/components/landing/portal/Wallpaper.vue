@@ -11,17 +11,27 @@
 
 <script>
 import Han from '@/components/basic/Han.vue'
+import services from '@/service-config.json';
 
 export default {
     name: "landing.portal.Wallpaper",
     data() {
         return {
             wallpaper: {
-                src: "https://source.unsplash.com/random/" + this.getPicSize()+'?nature,water'
+                src: ''
             }
         };
     },
+    mounted() {
+        this.getPic();
+    },
     methods: {
+        getPic() {
+            this.axios.post(services.unsplash_redirect + "?url=/random/" + this.getPicSize() + '?nature,water')
+                .then(response => {
+                    console.log(response);
+                });
+        },
         getPicSize() {
             let width = document.documentElement.clientWidth
             let height = document.documentElement.clientHeight
@@ -60,12 +70,12 @@ export default {
     height: 100%;
     user-select: none;
     -webkit-user-drag: none;
-}
-.wallpaper-loading > img{
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%)
+    img{
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%)
+    }
 }
 .wallpaper-overlay{
     width: 100%;
@@ -73,18 +83,18 @@ export default {
     z-index: 98;
     display: none;
     transition: 100ms;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 55%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.75) 100%);
-}
-.wallpaper-overlay > span{
-    position: absolute;
-    bottom: 1rem;
-    margin-left: 1.5rem;
-    color: #8f8f8f;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.05rem;
-    user-select: none;
-    -webkit-user-drag: none;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 45%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0.75) 85%);
+    span{
+        position: absolute;
+        bottom: 1rem;
+        margin-left: 1.5rem;
+        color: #8f8f8f;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.05rem;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
 }
 .wallpaper[lazy=loaded] > .wallpaper-loading{
     display: none;
