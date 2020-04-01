@@ -22,7 +22,7 @@ export default {
         return {
             org: "pwp.app",
             orgLink: "https://pwp.app",
-            startYear: this.$moment().format("YYYY"),
+            startYear: this.dayjs().format("YYYY"),
             endYear: null,
             author: "BackRunner"
         };

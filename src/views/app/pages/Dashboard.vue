@@ -134,7 +134,7 @@ export default {
                     if (response.data.code == 200){
                         let statInstallData = response.data.data.install;
                         let statUninstallData = response.data.data.uninstall;
-                        let time = this.$moment().subtract(30, 'days');
+                        let time = this.dayjs.subtract(30, 'days');
                         for (let i=0;i<30;i++){
                             let formatted = time.format('YYYY-M-D');
                             let object = {

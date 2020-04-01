@@ -54,8 +54,8 @@ Vue.use(VueLazyload)
 Vue.use(VueBus)
 
 // import moment
-import moment from "moment"
-Vue.prototype.$moment = moment
+import dayjs from 'dayjs'
+Vue.prototype.dayjs = dayjs
 
 Vue.config.productionTip = false
 
