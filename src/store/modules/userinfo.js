@@ -1,8 +1,8 @@
 const state = {
-    username: '',
-    email: '',
-    phone: '',
-    role: ''
+    username: null,
+    email: null,
+    phone: null,
+    role: null
 }
 
 const mutations = {

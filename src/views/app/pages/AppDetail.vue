@@ -151,7 +151,7 @@ export default {
                 if (response.status == 200){
                     if (response.data.code == 200){
                         let installData = response.data.data;
-                        let time = this.dayjs.subtract(30, 'days');
+                        let time = this.dayjs().subtract(30, 'days');
                         for (let i=0;i<30;i++){
                             let formatted = time.format('YYYY-M-D');
                             if (installData.hasOwnProperty(formatted)){

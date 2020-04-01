@@ -21,21 +21,11 @@ export default {
         MainPart
     },
     created(){
-        // 拉取用户的基本信息
         if(this.$route.name == 'app.main'){
             this.$router.push({
                 name: 'app.page.dashboard'
             })
         }
-    },
-    mounted(){
-        this.axios.get('/api/user/fetchUserInfo').then((response) => {
-            if (response.status == 200){
-                if (response.data.data != null){
-                    this.$store.commit('userinfo/setUserInfo', response.data.data)
-                }
-            }
-        });
     },
     data() {
         return {

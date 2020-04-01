@@ -27,10 +27,12 @@ export default {
     },
     methods: {
         getPic() {
-            this.axios.post(services.unsplash_redirect + "/random/" + this.getPicSize() + '?nature,water')
-                .then(response => {
-                    console.log(response);
-                });
+            this.axios.get(services.unsplash_redirect + "/random/" + this.getPicSize() + '?nature,water')
+                .then(res => {
+                    if (res) {
+                        this.wallpaper.src = res.data.data
+                    }
+                })
         },
         getPicSize() {
             let width = document.documentElement.clientWidth

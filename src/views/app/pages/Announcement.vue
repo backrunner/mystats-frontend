@@ -16,18 +16,6 @@ export default {
     name: 'app.page.announcement',
     components: {
         AnnouncementList
-    },
-    watch: {
-        '$store.state.userinfo.role': 'adminCheck'
-    },
-    methods: {
-        adminCheck(){
-            if (this.$store.state.userinfo.role != 'admin'){
-                this.$router.push({
-                    name: 'error.404'
-                })
-            }
-        }
     }
 }
 </script>

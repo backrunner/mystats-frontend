@@ -46,8 +46,7 @@ export default {
     data() {
         return {
             isCollapse: false,
-            showAdmin: false,
-            defaultActive: ''
+            showAdmin: this.$store.state.userinfo.role == 'admin'
         };
     },
     created() {
@@ -56,11 +55,13 @@ export default {
     watch: {
         "$store.state.userinfo.role": 'canShowAdmin'
     },
-    mounted() {
-        if (this.$route.path == '/app'){
-            this.defaultActive = '/app/dashboard';
-        } else {
-            this.defaultActive = /(\/[a-zA-Z]+\/[a-zA-Z]+)/.exec(this.$route.path).length > 0 ? /(\/[a-zA-Z]+\/[a-zA-Z]+)/.exec(this.$route.path)[0] : null
+    computed: {
+        defaultActive() {
+            if (this.$route.path == '/app'){
+                return '/app/dashboard';
+            } else {
+                return /(\/[a-zA-Z]+\/[a-zA-Z]+)/.exec(this.$route.path).length > 0 ? /(\/[a-zA-Z]+\/[a-zA-Z]+)/.exec(this.$route.path)[0] : null
+            }
         }
     },
     methods: {
