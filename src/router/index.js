@@ -78,6 +78,15 @@ const routes = [{
                 }
             },
             {
+                path: 'doc',
+                name: 'app.page.doc',
+                component: () => import( /* webpackChunkName: "app.page.userSettings" */ '../views/app/pages/Doc.vue'),
+                meta: {
+                    title: '使用文档',
+                    require: 'user'
+                }
+            },
+            {
                 path: 'manageuser',
                 name: 'app.page.admin.manageuser',
                 component: () => import( /* webpackChunkName: "app.page.admin.manageuser" */ '../views/app/pages/manageUser.vue'),

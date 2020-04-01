@@ -22,6 +22,10 @@
             <i class="el-icon-s-marketing"></i>
             <span slot="title">数据报表</span>
         </el-menu-item>
+        <el-menu-item index="/app/doc">
+            <i class="el-icon-document"></i>
+            <span slot="title">使用文档</span>
+        </el-menu-item>
         <el-menu-item index="/app/usersettings">
             <i class="el-icon-s-tools"></i>
             <span slot="title">用户设置</span>
