@@ -404,20 +404,20 @@ export default {
     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.05) !important;
     user-select: none;
     -webkit-user-drag: none;
-}
-.box-card > .el-card__header {
-    padding: 14px 20px;
+    .el-card__header {
+        padding: 14px 20px;
+    }
 }
 .usersettings-hello {
     user-select: none;
     -webkit-user-drag: none;
-}
-.usersettings-hello > p {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.05rem;
-    margin: 0;
-    color: #606266;
+    p {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.05rem;
+        margin: 0;
+        color: #606266;
+    }
 }
 .card-header > span {
     color: #606266;
@@ -426,60 +426,67 @@ export default {
 // card-modifypassword
 .card-icons {
     height: @card-height;
+    .el-card__body {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        .box-card-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: @card-height !important;
+            height: @card-height;
+            background: #f1b50e;
+            color: white;
+            font-size: 58px;
+        }
+        .box-card-right {
+            flex: 1 1 auto;
+            padding: 18px 25px;
+            display: inline-block;
+            .box-card-title {
+                font-size: 18px;
+                margin-bottom: 10px;
+                color: #606266;
+            }
+            .box-card-desc {
+                margin-bottom: 24px;
+                span {
+                    font-size: 14px;
+                    color: #909399;
+                }
+            }
+            .box-card-action {
+                span {
+                    font-size: 14px;
+                    color: #f1b50e;
+                    i {
+                        margin-left: 4px;
+                    }
+                }
+                span:hover {
+                    color: darken(#f1b50e, 5%);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
-.card-icons > .el-card__body {
-    display: flex;
-    flex-direction: row;
-    padding: 0;
+#card-cancelAccount {
+    .el-card__body {
+        .box-card-icon {
+            background: #f56c6c;
+        }
+        .box-card-right {
+            .box-card-action {
+                span {
+                    color: #f56c6c;
+                }
+            }
+        }
+    }
 }
-.card-icons > .el-card__body > .box-card-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: @card-height !important;
-    height: @card-height;
-    background: #f1b50e;
-    color: white;
-    font-size: 58px;
-}
-#card-cancelAccount > .el-card__body > .box-card-icon {
-    background: #f56c6c;
-}
-.card-icons > .el-card__body > .box-card-right {
-    flex: 1 1 auto;
-    padding: 18px 25px;
-    display: inline-block;
-}
-.card-icons > .el-card__body > .box-card-right > .box-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #606266;
-}
-.card-icons > .el-card__body > .box-card-right > .box-card-desc {
-    margin-bottom: 24px;
-}
-.card-icons > .el-card__body > .box-card-right > .box-card-desc > span {
-    font-size: 14px;
-    color: #909399;
-}
-.card-icons > .el-card__body > .box-card-right > .box-card-action > span {
-    font-size: 14px;
-    color: #f1b50e;
-}
-#card-cancelAccount
-    > .el-card__body
-    > .box-card-right
-    > .box-card-action
-    > span {
-    color: #f56c6c;
-}
-.card-icons > .el-card__body > .box-card-right > .box-card-action > span > i {
-    margin-left: 4px;
-}
-.card-icons > .el-card__body > .box-card-right > .box-card-action > span:hover {
-    color: darken(#f1b50e, 5%);
-    cursor: pointer;
-}
+
 
 .card-icons-mt {
     margin-top: 14px;
@@ -502,9 +509,9 @@ export default {
     float: left;
     font-size: 14px;
     color: #606266;
-}
-.avatar-desc-label > label {
-    line-height: 40px;
+    label {
+        line-height: 40px;
+    }
 }
 .avatar-desc-text {
     display: block;
@@ -512,13 +519,13 @@ export default {
     margin-top: 10px;
     font-size: 14px;
     color: #606266;
-}
-.avatar-desc-text > p{
-    margin-top: 0;
-    margin-bottom: 8px;
+    p {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
 }
 .avatar-desc-action {
-    margin-top: 56px;
+    margin-top: 64px;
     margin-left: 48px;
 }
 #form-avatar > .el-form-item > .el-form-item__content {
@@ -531,8 +538,8 @@ export default {
 // card-loginLog
 #card-loginLog {
     margin-top: 1rem;
-}
-#card-loginLog > .el-card__body {
-    padding: 4px 20px 20px 20px;
+    .el-card__body {
+        padding: 4px 20px 20px 20px;
+    }
 }
 </style>
