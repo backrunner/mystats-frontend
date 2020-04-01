@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         getPic() {
-            this.axios.post(services.unsplash_redirect + "?url=/random/" + this.getPicSize() + '?nature,water')
+            this.axios.post(services.unsplash_redirect + "/random/" + this.getPicSize() + '?nature,water')
                 .then(response => {
                     console.log(response);
                 });
