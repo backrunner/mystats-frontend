@@ -9,11 +9,11 @@
         </div>
         <div class="applist-table">
             <el-table :data="appListData.slice((appListCurrentPage-1)*appListSize,appListCurrentPage*appListSize)" style="width: 100%;" v-loading="appListLoading" :fit="true">
-                <el-table-column prop="id" label="ID" width="100" :sortable="true"></el-table-column>
+                <el-table-column prop="id" label="ID" width="75" :sortable="true"></el-table-column>
                 <el-table-column prop="bundleId" label="Bundle ID" width="220"></el-table-column>
-                <el-table-column prop="displayName" label="名称" width="220"></el-table-column>
-                <el-table-column prop="appKey" label="App Key" width="380"></el-table-column>
-                <el-table-column prop="installCount" label="总安装量" width="180"></el-table-column>
+                <el-table-column prop="displayName" label="名称" width="180"></el-table-column>
+                <el-table-column prop="appKey" label="App Key" width="360"></el-table-column>
+                <el-table-column prop="installCount" label="总安装量" width="120"></el-table-column>
                 <el-table-column prop="isEnabled" label="可用状态" :formatter="enabledFormatter" width="120"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
@@ -112,7 +112,7 @@ export default {
     },
     methods: {
         handleView(index, row){
-            this.$router.push({ path: '/app/appManage/'+row.id, params: { appId: row.id }})
+            this.$router.push({ path: '/app/appmanage/'+row.id, params: { appId: row.id }})
         },
         handleEdit(index, row){
             this.editAppDialog(row, index)
