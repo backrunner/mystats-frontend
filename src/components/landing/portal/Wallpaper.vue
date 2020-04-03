@@ -27,12 +27,15 @@ export default {
     },
     methods: {
         getPic() {
-            this.axios.get(services.unsplash_redirect + "/random/" + this.getPicSize() + '?nature,water')
-                .then(res => {
-                    if (res) {
-                        this.wallpaper.src = res.data.data
-                    }
-                })
+            this.axios({
+                url: services.unsplash_redirect + "/random/" + this.getPicSize() + '?nature,water',
+                method: 'get',
+                withCredentials: 'false'
+            }).then(res => {
+                if (res) {
+                    this.wallpaper.src = res.data.data
+                }
+            })
         },
         getPicSize() {
             let width = document.documentElement.clientWidth
