@@ -96,18 +96,19 @@ img, i{
     margin-top: 2.75rem;
 }
 .row-cards {
-    padding-top: 4.25rem;
+    padding-top: 3rem;
     width: 900px;
     margin: 0 auto;
 }
 .el-card {
     margin: 0 1.25rem;
-    height: 300px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    height: 328px;
+    border-radius: 8px;
+    box-shadow: 0 0px 16px rgba(0, 0, 0, 0.075) !important;
 }
 .card-logo {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
     height: 68px;
     i{
         font-size: 3.75rem;

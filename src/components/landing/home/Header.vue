@@ -33,7 +33,7 @@ span{
 }
 .row-logo {
     text-align: center;
-    padding-top: 3.5rem;
+    padding-top: 2.5rem;
 }
 #logo{
     width: 8.75rem;
