@@ -30,7 +30,7 @@ export default {
             this.axios({
                 url: services.unsplash_redirect + "/random/" + this.getPicSize() + '?nature,water',
                 method: 'get',
-                withCredentials: 'false'
+                withCredentials: false
             }).then(res => {
                 if (res) {
                     this.wallpaper.src = res.data.data
