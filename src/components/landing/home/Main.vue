@@ -135,7 +135,7 @@ img, i{
     text-align: center;
     letter-spacing: 0.025rem;
 }
-@media (max-width: 1600px) {
+@media (max-height: 754px) {
     .row-start{
         margin-top: 1.5rem;
     }

@@ -50,7 +50,7 @@ span{
     font-size: 1.375rem;
     letter-spacing: 0.075rem;
 }
-@media (max-width: 1600px){
+@media (max-height: 754px){
     #logo{
         width: 7.75rem;
     }
