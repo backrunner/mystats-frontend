@@ -40,6 +40,7 @@ export default {
 .overview-data-label{
     color: #909399;
     letter-spacing: 0.05rem;
+    margin-bottom: 4px;
     font-size: 14px;
 }
 .overview-data-value{

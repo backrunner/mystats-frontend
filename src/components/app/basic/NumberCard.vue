@@ -38,6 +38,7 @@ export default {
     color: #909399;
     letter-spacing: 0.05rem;
     font-size: 14px;
+    margin-bottom: 6px;
 }
 .card-number-value{
     color: #606266;
