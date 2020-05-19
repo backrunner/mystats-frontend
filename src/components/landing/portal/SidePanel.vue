@@ -299,7 +299,7 @@
         }
     }
 
-    .recaptcha{
+    .grecaptcha-badge {
         display: none;
     }
 
