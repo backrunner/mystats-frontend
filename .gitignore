@@ -22,3 +22,5 @@ yarn-error.log*
 *.psd
 
 service-config.json
+
+keys.js

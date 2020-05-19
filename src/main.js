@@ -7,7 +7,9 @@ import VueLazyload from 'vue-lazyload'
 import store from './store'
 import router from './router'
 import qs from "qs"
+import { VueReCaptcha } from 'vue-recaptcha-v3'
 import './plugins/element.js'
+import keys from './keys';
 
 // 按需引入图表
 import VeLine from 'v-charts/lib/line.common'
@@ -53,22 +55,19 @@ Vue.use(VueLazyload)
 // set up vue bus
 Vue.use(VueBus)
 
+// set up recaptcha
+Vue.use(VueReCaptcha, {
+    siteKey: keys.recaptcha,
+    loaderOptions: {
+        useRecaptchaNet: true
+    }
+});
+
 // import moment
 import dayjs from 'dayjs'
 Vue.prototype.dayjs = dayjs
 
 Vue.config.productionTip = false
-
-// 默认 title
-document.title = 'myStats'
-
-// 修改页面 title
-router.beforeEach((to, from, next) => {
-    if (to.meta.title) {
-        document.title = to.meta.title
-    }
-    next()
-})
 
 new Vue({
     router,

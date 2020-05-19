@@ -58,7 +58,6 @@
 
 <script>
     import Han from '@/components/basic/Han.vue'
-    import reCaptcha from '@/components/common/reCaptcha.vue'
 
     export default {
         data() {
@@ -143,22 +142,13 @@
                 }
             }
         },
-        mounted() {
-            if (typeof window.grecatpcha != 'undefined'){
-                this.captchaStatus = true
-            }
-        },
         methods: {
             onLogin() {
                 this.$refs['loginForm'].validate((valid) => {
                     if (!valid) {
                         return false;
                     }
-                    try {
-                        this.executeRecaptcha()
-                    } catch {
-                        this.$message.error('验证加载失败')
-                    }
+                    this.submitRequest();
                 });
             },
             onRegister() {
@@ -166,11 +156,7 @@
                     if (!valid) {
                         return false;
                     }
-                    try {
-                        this.executeRecaptcha()
-                    } catch {
-                        this.$message.error('验证加载失败')
-                    }
+                    this.submitRequest();
                 });
             },
             toLogin() {
@@ -191,7 +177,9 @@
                     name: 'landing.home'
                 })
             },
-            submitRequest(token) {
+            async submitRequest() {
+                await this.$recaptchaLoaded();
+                const token = await this.$recaptcha('login');
                 if (this.status == 'login'){
                     this.axios.post('/api/portal/login',{
                         username: this.loginForm.username,
@@ -237,15 +225,10 @@
                     });
                 }
             },
-            // execute the recaptcha widget
-            executeRecaptcha() {
-                this.$refs.recaptcha.execute()
-            }
         },
         name: "landing.portal.sidePanel",
         components: {
-            Han,
-            reCaptcha
+            Han
         }
     };
 </script>
