@@ -137,7 +137,7 @@ const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
-})
+});
 
 async function getUserInfo() {
     let res = await axios.get('/api/user/fetchUserInfo')
@@ -147,6 +147,9 @@ async function getUserInfo() {
 }
 
 router.beforeEach(async (to, from, next) => {
+    if (to.meta.title) {
+        document.title = to.meta.title
+    }
     if (to.matched.some(r => r.meta.require == 'admin')) {
         if (!store.state.userinfo.username) {
             await getUserInfo();
