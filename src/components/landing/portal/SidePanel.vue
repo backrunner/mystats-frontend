@@ -197,7 +197,7 @@
                         } else {
                             this.$router.push({
                                 name: 'app.page.dashboard'
-                            })
+                            });
                         }
                     }).catch((err) => {
                         this.$message.error('请求时出现错误');
@@ -297,10 +297,6 @@
             color: #F1B50E;
             cursor: pointer;
         }
-    }
-
-    .grecaptcha-badge {
-        display: none;
     }
 
     @media (max-width: 1600px) {
